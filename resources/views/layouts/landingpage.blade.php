@@ -10,7 +10,7 @@
   
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-white card" >
       <div class="container">
         <img src="../img/logobbkkp.jpeg"  style="max-width: 150px; height: auto;" alt="">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,26 +29,42 @@
               <a class="nav-link active" aria-currents="page" href="#"><i class="bi bi-person-lines-fill"></i> Kontak</a>
             </li>
           </ul>
-          <i class="bi bi-box-arrow-in-right"></i>
+          <ul class="navbar-nav">
+
+            @if (Route::has('login'))
+            @auth
+                @if (Auth::user()->is_admin == 1)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/home') }}">Dashboard</a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="fw-bold nav-link text-dark" href="{{ route('logout') }}"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                           <button class="btn btn-primary">Logout</button>
+                        </a>
+                    </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endif
+            @else
+                <li class="nav-item">
+                    <a class="fw-bold nav-link " href="{{ route('login') }}"><button class="btn btn-primary">Login</button></a>
+                </li>
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="fw-bold nav-link nav-menu" href="{{ route('register') }}"><button class="btn">Register</button>
+                        </a>
+                    </li>
+                @endif
+            @endauth
+        @endif
+          </ul>
         </div>
       </div>
     </nav>
-    <header class="hero-section">
-      <div class="container">
-          <div class="row align-items-center">
-              <div class="col-lg-6">
-                  <h1 class="display-4">Welcome to Your Website</h1>
-                  <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.</p>
-                  <a href="#" class="btn btn-primary btn-lg">Get Started</a>
-              </div>
-              <div class="col-lg-6">
-                  <!-- Your Hero Image -->
-                  <img src="path/to/your/image.jpg" alt="Hero Image" class="img-fluid">
-              </div>
-          </div>
-      </div>
-      
-  </header>
+   @yield('content')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

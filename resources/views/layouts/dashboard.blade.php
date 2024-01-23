@@ -69,6 +69,19 @@
                     <span>Tables</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="/">
+                    
+                                        <form action="{{ route('logout') }}" method="POST">
+                                            @csrf
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fas fa-fw fa-table"></i>
+                                                <span>Logout</span>
+                                            </button>
+                                        </form>
+                </a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
