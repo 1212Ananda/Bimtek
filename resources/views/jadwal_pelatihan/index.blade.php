@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         @if(count($jadwalPelatihan) > 0)
-            <h1>Jadwal Pelatihan</h1>
+            <h1>Jadwal pelatihan</h1>
             <table class="table">
                 <thead>
                     <tr>
