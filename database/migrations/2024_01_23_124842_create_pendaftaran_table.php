@@ -26,7 +26,8 @@ return new class extends Migration
             $table->string('ttd_surat_keputusan')->nullable();
             $table->string('kode_billing')->nullable();
             $table->string('surat_keputusan')->nullable();
-            $table->string('status')->default('pending'); // Default status adalah 'pending'
+            $table->string('status')->default('pending');
+            $table->boolean('konfirmasi_pembayaran')->default(false);
             $table->timestamps();
         });
     }

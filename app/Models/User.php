@@ -24,6 +24,15 @@ class User extends Authenticatable
         'is_admin',
     ];
 
+    public function jadwalPelatihan()
+    {
+        return $this->hasMany(JadwalPelatihan::class);
+    }
+    public function pendaftaran()
+    {
+        return $this->hasOne(Pendaftaran::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -43,4 +52,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+   
 }

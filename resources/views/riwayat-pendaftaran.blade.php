@@ -9,12 +9,12 @@
                 {{ session('success') }}
             </div>
         @endif
-        <h1 class="mb-4">Riwayat Pendaftaran</h1>
+        <h1 class="mb-4 fw-semibold text-center">Riwayat Pendaftaran</h1>
 
         @if(count($riwayatPendaftaran) > 0)
             <div class="table-responsive">
                 <table class="table table-bordered">
-                    <thead>
+                    <thead >
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nama</th>
@@ -44,19 +44,30 @@
                                 </td>
                                 <td>{{ $pendaftaran->created_at }}</td>
                                 <td>
-                                    @if ($pendaftaran->bukti_pembayaran > 0)
-                                        Pembayaran sedang di cek 
+                                    @if ($pendaftaran->konfirmasi_pembayaran)
+                                        <span class="badge bg-success">Pembayaran Diterima</span>
+                                    @else
+                                        @if ($pendaftaran->bukti_pembayaran > 0)
+                                            Pembayaran sedang dicek 
+                                        @else
+                                            <span class="text-danger fw-bold">Belum Dibayar</span>
+                                        @endif
                                     @endif
+
                                 </td>
                                 <td>
                                     @if ($pendaftaran->status === 'approved')
-                                    <a href="{{ route('detailPendaftaran', ['id' => $pendaftaran->id]) }}" class="btn btn-info"> Detail</a>
+                                        @if ($pendaftaran->konfirmasi_pembayaran)
+                                            <a href="{{ route('lihat-jadwal') }}" class="btn btn-primary">Lihat Jadwal</a>
+                                        @else
+                                            <a href="{{ route('detailPendaftaran', ['id' => $pendaftaran->id]) }}" class="btn btn-info">Cek Pembayaran</a>
+                                        @endif
                                     @else
-                                    <form action="{{ route('cancel_pendaftaran', ['id' => $pendaftaran->id]) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE') <!-- Gunakan metode DELETE -->
-                                        <button type="submit" class="btn btn-danger">Batalkan</button>
-                                    </form>
+                                        <form action="{{ route('cancel_pendaftaran', ['id' => $pendaftaran->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Batalkan</button>
+                                        </form>
                                     @endif
                                    </td>
                                 {{-- <td>

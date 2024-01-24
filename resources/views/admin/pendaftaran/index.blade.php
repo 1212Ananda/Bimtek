@@ -1,8 +1,8 @@
 @extends('layouts.dashboard') <!-- Sesuaikan dengan layout admin yang Anda gunakan -->
 
 @section('content')
-    <div class="container mt-5">
-        <h1 class="mb-4">Pendaftaran Menunggu Persetujuan</h1>
+    <div class="container mt-5 card p-4">
+        <h2 class="mb-4 fw-bold">Pendaftaran</h2>
 
         @if(count($pendaftaranMenunggu) > 0)
             <div class="table-responsive">
@@ -28,17 +28,23 @@
                                 <td>{{ $pendaftaran->nama_perusahaan }}</td>
                                 <td>{{ $pendaftaran->alamat_perusahaan }}</td>
                                 <td>{{ $pendaftaran->created_at }}</td>
-                                <td>{{ $pendaftaran->status }}</td>
+                                <td>@if ($pendaftaran->status === "pending")
+                                    
+                                    <span class="badge badge-danger">{{ $pendaftaran->status }}</span>
+                                    @else
+                                    <span class="badge badge-success">{{ $pendaftaran->status }}</span>
+                                @endif
+                                </td>
                                 <td>{{ $pendaftaran->kode_billing }}</td>
                                 <td>
-                                    @if($pendaftaran->surat_keputusan)
-                                        <a href="{{ asset('storage/' . $pendaftaran->surat_keputusan) }}" target="_blank">Lihat Surat</a>
+                                    @if($pendaftaran->surat_permohonan)
+                                        <a href="{{ asset('storage/' . $pendaftaran->surat_permohonan) }}" target="_blank">Lihat Surat</a>
                                     @else
                                         Belum diunggah
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('showDetail', ['id' => $pendaftaran->id]) }}" class="btn btn-info">Lihat Detail</a>
+                                    <a href="{{ route('showDetail', ['id' => $pendaftaran->id]) }}" class="btn btn-info">Detail</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -20,11 +20,20 @@
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
               
-              <a class="nav-link active" aria-current="page" href="#"><i class="bi bi-houses-fill"></i> Home</a>
+              <a class="nav-link active" aria-current="page" href="/"><i class="bi bi-houses-fill"></i> Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-currents="page" href="#"><i class="bi bi-pencil-square"></i> Pendaftaran</a>
+              <a class="nav-link active" aria-currents="page" href="/pendaftaran"><i class="bi bi-pencil-square"></i> Pendaftaran</a>
             </li>
+            @auth
+              <li class="nav-item">
+                <a class="nav-link active" aria-currents="page" href="riwayat-pendaftaran"><i class="bi bi-person-lines-fill"></i> Riwayat Pendaftaran</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-currents="page" href="#"><i class="bi bi-person-lines-fill"></i> Jadwal Pelatihan</a>
+              </li>
+            @endauth
+            
             <li class="nav-item">
               <a class="nav-link active" aria-currents="page" href="#"><i class="bi bi-person-lines-fill"></i> Kontak</a>
             </li>

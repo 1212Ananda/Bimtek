@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JadwalPelatihan;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,6 +101,22 @@ if ($request->hasFile('surat_permohonan')) {
 
         return redirect()->route('riwayat_pendaftaran')->with('success', 'Pembayaran dan surat keputusan berhasil dikirim . silahkan menunggu persetujuan admin');
     }
+
+    public function jadwalPelatihan()
+{
+     // Mendapatkan pengguna yang login
+     $user = Auth::user();
+
+     // Mendapatkan pendaftaran pengguna
+     $pendaftaran = $user->pendaftaran;
+     if ($pendaftaran) {
+         $jadwalPelatihan = $pendaftaran->jadwalPelatihan;
+         return view('jadwal_pelatihan.index', compact('jadwalPelatihan'));
+     } else {
+         return view('jadwal_pelatihan.index', ['jadwalPelatihan' => []]);
+     }
+}
+
 
 
 }
