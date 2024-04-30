@@ -85,12 +85,13 @@
                 <h1 class="mb-3">Halo Sobat Industri!</h1>
                 <h4 class="mb-3">Login dulu yuk...</h4>
             
-                <form class="mt-5"> 
+                <form class="mt-5" action="{{ route('login') }}" method="POST"> 
+                    @csrf
                     <div class="form-group mb-3">
-                        <input type="text" class="form-control" placeholder="Username">
+                        <input type="email" class="form-control" placeholder="email" name="email">
                     </div>
                     <div class="form-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
                     </div>
                     <div class="form-group mb-3 text-right">
                         <a href="#" class="text-primary">Forgot your password?</a>
