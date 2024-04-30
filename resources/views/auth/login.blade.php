@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.landingpage')
 
 @section('content')
-<div class="container">
+{{-- <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,5 +69,42 @@
             </div>
         </div>
     </div>
+</div> --}}
+
+<div class="container">
+    <div class="row  d-flex my-5 align-items-center  justify-content-center " style="border: 2px solid #b31515; heigh:100vh;">
+    <div class="col-md-6">
+        <div class="  ">
+            <img src="../img/login.jpg"  style="width: 500px; height: auto;" alt="">
+        </div>
+        
+    </div>
+    <div class="col-md-6">
+        <div class="  card text-center my-3 p-3 ">
+            <div class="card-body mt-auto">
+                <h1 class="mb-3">Halo Sobat Industri!</h1>
+                <h4 class="mb-3">Login dulu yuk...</h4>
+            
+                <form class="mt-5"> 
+                    <div class="form-group mb-3">
+                        <input type="text" class="form-control" placeholder="Username">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group mb-3 text-right">
+                        <a href="#" class="text-primary">Forgot your password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <div class="mt-3">
+                    <span>No account yet? <a href="#" class="text-primary">Register</a>.</span>
+                </div>
+        </div>
+        
+    </div>
+    </div>
+
 </div>
+
 @endsection

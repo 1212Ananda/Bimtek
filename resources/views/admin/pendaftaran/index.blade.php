@@ -16,7 +16,6 @@
                             <th scope="col">Tanggal Pendaftaran</th>
                             <th scope="col">Status</th>
                             <th scope="col">Kode Billing</th>
-                            <th scope="col">Surat Keputusan</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -36,13 +35,7 @@
                                 @endif
                                 </td>
                                 <td>{{ $pendaftaran->kode_billing }}</td>
-                                <td>
-                                    @if($pendaftaran->surat_permohonan)
-                                        <a href="{{ asset('storage/' . $pendaftaran->surat_permohonan) }}" target="_blank">Lihat Surat</a>
-                                    @else
-                                        Belum diunggah
-                                    @endif
-                                </td>
+                                
                                 <td>
                                     <a href="{{ route('showDetail', ['id' => $pendaftaran->id]) }}" class="btn btn-info">Detail</a>
                                 </td>
