@@ -73,6 +73,18 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="/pelatihan">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Pelatihan</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/users">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Users</span></a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="/">
                     
                                         <form action="{{ route('logout') }}" method="POST">
@@ -84,6 +96,8 @@
                                         </form>
                 </a>
             </li>
+
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

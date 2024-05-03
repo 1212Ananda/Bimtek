@@ -95,6 +95,35 @@
                 <p><strong>Catatan:</strong> Setelah mengikuti langkah-langkah di atas, Anda akan menunggu persetujuan dan melanjutkan ke tahap berikutnya.</p>
             </div>
         </div>
+
+    <div>
+        <div class="container">
+            <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Judul Bimtek</th>
+                <th scope="col">Waktu</th>
+                <th scope="col">Biaya</th>
+                <th scope="col">Kontak</th>
+                <th scope="col">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Penyelenggaraan Uji Profesi dan Uji Banding Antar Laboratorium Berdasarkan ISO/ IEC 170:2023</td>
+                <td>17-18 Agustus 2024</td>
+                <td>2.200.000</td>
+                <td>08923239221</td>
+                <td><button type="button" class="btn btn-primary">Daftar</button></td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </div>
+        
+    </div>
     </div>
 </section>
 @endsection

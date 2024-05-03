@@ -127,5 +127,10 @@ public function pembayaran()
         // Redirect kembali ke halaman sebelumnya
         return redirect()->back();
     }
-
+public function pelatihan() {
+    return view("admin.pelatihan.index");
+}
+public function users() {
+    return view("admin.users.index");
+}
 }

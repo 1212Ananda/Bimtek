@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PendaftaranController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PelatihanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::post('/upload-bukti-pembayaran/{id}', [PendaftaranController::class, 'buk
 Route::get('/jadwal-pelatihan/user', [PendaftaranController::class, 'jadwalPelatihan'])->name('lihat-jadwal');
 
 
+
 Auth::routes();
 
 
@@ -35,6 +37,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/pendaftaran', [AdminController::class, 'pendaftaranMenunggu'])->name('admin_pendaftaran');
     Route::get('/admin/pembayaran', [AdminController::class, 'pembayaran'])->name('admin_pembayaran');
     Route::get('/admin/jadwal-pelatihan', [AdminController::class, 'jadwalPelatihan'])->name('admin_jadwal-pelatihan');
+    Route::get('/admin/pelatihan', [AdminController::class, 'pelatihan'])->name('admin_pelatihan');
+    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin_users');
     Route::post('/admin/approve_pendaftaran/{id}', [AdminController::class, 'approvePendaftaran'])->name('approve_pendaftaran');
     Route::get('admin/pendaftaran/{id}', [AdminController::class, 'showDetail'])->name('showDetail');
 
@@ -46,5 +50,6 @@ Route::get('/konfirmasi-pembayaran/{id}/{action}', [AdminController::class, 'kon
     Route::post('/pendaftaran/{id}/send-to-user', [AdminController::class, 'sendToUser'])->name('approve');
     // ...
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('/pelatihan', PelatihanController::class);
 });
 
