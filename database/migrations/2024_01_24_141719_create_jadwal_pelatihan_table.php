@@ -13,17 +13,11 @@ return new class extends Migration
     {
         Schema::create('jadwal_pelatihan', function (Blueprint $table) {
             $table->id();
-            $table->string('hari');
-            $table->date('tanggal');
-            $table->string('tempat');
-            $table->string('nama_pelatih');
-            $table->unsignedBigInteger('pendaftaran_id'); 
-
-            $table->foreign('pendaftaran_id')
-                ->references('id')
-                ->on('pendaftaran')
-                ->onDelete('cascade');
-               
+            $table->foreignId('pendafataran_id')->constrained('pendaftaran')->onDelete('cascade');
+            $table->string('tahap');
+            $table->date('tanggal_pelaksanaan');
+            $table->string('ruangan');
+            $table->string('instruktur');
             $table->timestamps();
         });
     }

@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('pendaftaran', function (Blueprint $table) {
-            $table->unsignedBigInteger('jadwal_pelatihan_id')->nullable();
-            $table->foreign('jadwal_pelatihan_id')->references('id')->on('jadwal_pelatihan')->onDelete('cascade');
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->timestamps();
         });
     }
 
@@ -22,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('pendaftaran', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('roles');
     }
 };

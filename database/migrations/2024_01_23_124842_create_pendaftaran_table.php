@@ -14,20 +14,17 @@ return new class extends Migration
         Schema::create('pendaftaran', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('nama');
+            $table->foreignId('pelatihan_id')->nullable()->constrained('pelatihans')->onDelete('cascade');
             $table->string('jabatan');
-            $table->string('pendidikan_terakhir');
             $table->string('no_tlp');
             $table->string('nama_perusahaan');
             $table->string('alamat_perusahaan');
             $table->string('no_perusahaan');
-            $table->string('surat_permohonan');
-            $table->string('bukti_pembayaran')->nullable();  
-            $table->string('ttd_surat_keputusan')->nullable();
-            $table->string('kode_billing')->nullable();
-            $table->string('surat_keputusan')->nullable();
-            $table->string('status')->default('pending');
-            $table->boolean('konfirmasi_pembayaran')->default(false);
+            $table->string('judul_bimtek');
+            $table->text('deskripsi_bimtek');
+            $table->string('spk');
+            $table->decimal('biaya')->nullable();
+            $table->string('status')->default('menunggu persetujuan admin');
             $table->timestamps();
         });
     }

@@ -51,8 +51,7 @@ class AdminController extends Controller
 
 public function pembayaran()
     {
-        $pembayaran = Pendaftaran::whereNotNull('bukti_pembayaran')
-        ->orderBy('created_at', 'desc')
+        $pembayaran = Pendaftaran::orderBy('created_at', 'desc')
         ->get();
 
         return view('admin.pembayaran.index', ['pembayaran' => $pembayaran]);

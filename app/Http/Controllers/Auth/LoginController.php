@@ -29,14 +29,20 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {
-        $isAdmin = Auth::User()->is_admin == 1;
+        $roleId = Auth::user()->role_id;
 
-        if (!$isAdmin) {
-            
-        return '/';
+        switch ($roleId) {
+            case 1:
+                return RouteServiceProvider::HOME;
+            case 2:
+                return '/admin/pembayaran';
+            case 3:
+                return '/admin/jadwal-pelatihan';
+            default:
+                return '/';
         }
-        return RouteServiceProvider::HOME;
     }
+
 
     /**
      * Create a new controller instance.

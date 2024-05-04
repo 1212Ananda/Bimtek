@@ -97,8 +97,13 @@
         </div>
 
     <div>
-        <div class="container">
-            <table class="table">
+</section>
+
+<section>
+    <div class="container my-5">
+        <h2 class="fw-semibold text-center mb-5">Pelatihan yang Tersedia</h2>
+       <div class="card p-3">
+        <table class="table">
             <thead>
               <tr>
                 <th scope="col">No</th>
@@ -110,7 +115,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+             @foreach ($pelatihans as $item)
+             <tr>
                 <th scope="row">1</th>
                 <td>Penyelenggaraan Uji Profesi dan Uji Banding Antar Laboratorium Berdasarkan ISO/ IEC 170:2023</td>
                 <td>17-18 Agustus 2024</td>
@@ -118,12 +124,11 @@
                 <td>08923239221</td>
                 <td><button type="button" class="btn btn-primary">Daftar</button></td>
               </tr>
+             @endforeach
              
             </tbody>
           </table>
-        </div>
-        
-    </div>
+       </div>
     </div>
 </section>
 @endsection
