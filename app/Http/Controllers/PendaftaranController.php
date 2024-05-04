@@ -19,26 +19,29 @@ class PendaftaranController extends Controller
     }
 
     public function store(Request $request)
-{
-    $data = $request->validate([
-        'jabatan' => 'required|string',
-        'no_tlp' => 'required|string',
-        'nama_perusahaan' => 'required|string',
-        'alamat_perusahaan' => 'required|string',
-        'no_perusahaan' => 'required|string',
-        'judul_bimtek' => 'required|string',
-        'deskripsi_bimtek' => 'required|string',
-        'user_id' => 'required',
-    ]);
+    {
+        $data = $request->validate([
+            'jabatan' => 'required|string',
+            'no_tlp' => 'required|string',
+            'nama_perusahaan' => 'required|string',
+            'alamat_perusahaan' => 'required|string',
+            'no_perusahaan' => 'required|string',
+            'judul_bimtek' => 'required|string',
+            'deskripsi_bimtek' => 'required|string',
+            'user_id' => 'required',
+        ]);
+        $user = Auth::user();
+        $pendaftaranBelumSukses = Pendaftaran::where('user_id', $user->id)
+            ->where('status', '!=', 'Disetujui')
+            ->exists();
 
-    // Membuat objek Pendaftaran
-    $pendaftaran = Pendaftaran::create($data);
+        if ($pendaftaranBelumSukses) {
+            return back()->with('error', 'Anda sudah memiliki pendaftaran yang belum berhasil. Harap selesaikan pendaftaran tersebut terlebih dahulu.');
+        }
+        $pendaftaran = Pendaftaran::create($data);
 
-    return redirect()->route('detailPendaftaran', $pendaftaran->id)->with('success', 'Pendaftaran berhasil diajukan! Tunggu konfirmasi admin.');
-}
-
-
-
+        return redirect()->route('detailPendaftaran', $pendaftaran->id)->with('success', 'Pendaftaran berhasil diajukan! Tunggu konfirmasi admin.');
+    }
 
     public function riwayatPendaftaran()
     {
@@ -47,7 +50,7 @@ class PendaftaranController extends Controller
 
         return view('riwayat-pendaftaran', compact('riwayatPendaftaran'));
     }
-    
+
 
     public function cancel($id)
     {
@@ -77,7 +80,7 @@ class PendaftaranController extends Controller
 
         if ($request->hasFile('bukti_pembayaran')) {
             $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
-            
+
             $pembayaran->bukti_pembayaran = $buktiPembayaranPath;
             $pembayaran->status = 'Menunggu Konfirmasi Pembayaran admin';
             $pembayaran->tanggal_pembayaran = Carbon::now();
@@ -85,27 +88,26 @@ class PendaftaranController extends Controller
         }
         if ($request->hasFile('spk')) {
             $spkTTD = $request->file('spk')->store('spk', 'public');
-            
+
             $pendaftaran->spk = $spkTTD;
             $pendaftaran->status = 'Menunggu Konfirmasi Surat Keputusan';
             $pendaftaran->save();
         }
 
-    
+
         return redirect()->back()->with('success', 'Pembayaran dan surat keputusan berhasil dikirim . silahkan menunggu persetujuan admin');
     }
 
     public function jadwalPelatihan()
-{
-    // Mendapatkan pengguna yang sedang masuk
-    $user = Auth::user();
+    {
+        // Mendapatkan pengguna yang sedang masuk
+        $user = Auth::user();
 
-    $jadwalPelatihan = [];
-    if ($user->pendaftaran && $user->pendaftaran->status === 'Disetujui') {
-        $jadwalPelatihan = $user->pendaftaran->jadwalPelatihan;
+        $jadwalPelatihan = [];
+        if ($user->pendaftaran && $user->pendaftaran->status === 'Disetujui') {
+            $jadwalPelatihan = $user->pendaftaran->jadwalPelatihan;
+        }
+
+        return view('jadwal_pelatihan.index', compact('jadwalPelatihan'));
     }
-
-    return view('jadwal_pelatihan.index', compact('jadwalPelatihan'));
-}
-
 }

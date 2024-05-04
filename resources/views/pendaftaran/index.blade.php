@@ -4,6 +4,12 @@
 
 @section('content')
     <div class="container my-5">
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <h1 class="mb-5 fw-semibold text-center">Form Pendaftaran</h1>
         <div class="card p-5 shadow-lg">
 
@@ -14,14 +20,15 @@
 
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama:</label>
-                            <input type="text" class="form-control" value="{{Auth::user()->name}}" name="nama" disabled required>
+                            <input type="text" class="form-control" value="{{ Auth::user()->name }}" name="nama"
+                                disabled required>
                         </div>
-            
+
                         <div class="mb-3">
                             <label for="jabatan" class="form-label">Jabatan:</label>
                             <input type="text" class="form-control" name="jabatan" required>
                         </div>
-        
+
                         <div class="mb-3">
                             <label for="no_tlp" class="form-label">No. Telepon:</label>
                             <input type="number" class="form-control" name="no_tlp" required>
@@ -30,10 +37,10 @@
                             <label for="nama_perusahaan" class="form-label">Nama Perusahaan:</label>
                             <input type="text" class="form-control" name="nama_perusahaan" required>
                         </div>
-            
-                        
 
-              
+
+
+
                     </div>
                     <div class="col-md-6">
 
@@ -41,7 +48,7 @@
                             <label for="alamat_perusahaan" class="form-label">Alamat Perusahaan:</label>
                             <input type="text" class="form-control" name="alamat_perusahaan" required>
                         </div>
-            
+
                         <div class="mb-3">
                             <label for="no_perusahaan" class="form-label">No. Tlp Perusahaan:</label>
                             <input type="text" class="form-control" name="no_perusahaan" required>
@@ -56,16 +63,16 @@
 
                         </div>
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                    
+
                         <button type="submit" class="btn btn-primary float-end">Submit</button>
                     </div>
                 </div>
-    
 
-                
-                
+
+
+
             </form>
-            
+
         </div>
     </div>
 @endsection
