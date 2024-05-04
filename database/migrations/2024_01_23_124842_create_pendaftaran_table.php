@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('no_perusahaan');
             $table->string('judul_bimtek');
             $table->text('deskripsi_bimtek');
-            $table->string('spk');
+            $table->string('spk')->nullable();
             $table->decimal('biaya')->nullable();
             $table->string('status')->default('menunggu persetujuan admin');
             $table->timestamps();

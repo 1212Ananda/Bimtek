@@ -39,8 +39,12 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
         
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+          
+        
+            <!-- Admin Menu -->
+            @if(Auth::user()->role_id == 1)
+              <!-- Nav Item - Dashboard -->
+              <li class="nav-item active">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -48,9 +52,6 @@
         
             <!-- Divider -->
             <hr class="sidebar-divider">
-        
-            <!-- Admin Menu -->
-            @if(Auth::user()->role_id == 1)
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="/admin/pendaftaran">
@@ -90,12 +91,28 @@
             <li class="nav-item">
                 <a class="nav-link" href="/admin/pembayaran">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Pembayaran</span></a>
+                    <span>Data Pembayaran</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/pembayaran/kode-billing">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Menunggu Kode Billing</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/bukti-pembayaran">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Bukti Pembayaran</span></a>
+            </li>
+           
             @endif
         
             <!-- Instruktur Menu -->
             @if(Auth::user()->role_id == 3)
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/jadwal-pelatihan/tambah">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tambah Jadwal Pelatihan</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin/jadwal-pelatihan">
                     <i class="fas fa-fw fa-table"></i>

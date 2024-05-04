@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\JadwalPelatihan;
+use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,42 +19,24 @@ class PendaftaranController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required|string',
-            'jabatan' => 'required|string',
-            'pendidikan_terakhir' => 'required|string',
-            'no_tlp' => 'required|string',
-            'nama_perusahaan' => 'required|string',
-            'alamat_perusahaan' => 'required|string',
-            'no_perusahaan' => 'required|string',
-            'surat_permohonan' => 'required|file|mimes:pdf', // Sesuaikan dengan kebutuhan
-        ]);
+{
+    $data = $request->validate([
+        'jabatan' => 'required|string',
+        'no_tlp' => 'required|string',
+        'nama_perusahaan' => 'required|string',
+        'alamat_perusahaan' => 'required|string',
+        'no_perusahaan' => 'required|string',
+        'judul_bimtek' => 'required|string',
+        'deskripsi_bimtek' => 'required|string',
+        'user_id' => 'required',
+    ]);
 
-        $user = Auth::user();
+    // Membuat objek Pendaftaran
+    $pendaftaran = Pendaftaran::create($data);
 
-        $surat = null;
+    return redirect()->route('detailPendaftaran', $pendaftaran->id)->with('success', 'Pendaftaran berhasil diajukan! Tunggu konfirmasi admin.');
+}
 
-        if ($request->hasFile('surat_permohonan')) {
-            $surat = $request->file('surat_permohonan')->store('surat_permohonan', 'public');
-        }
-        Pendaftaran::create([
-            'user_id' => $user->id,
-            'nama' => $request->input('nama'),
-            'jabatan' => $request->input('jabatan'),
-            'pendidikan_terakhir' => $request->input('pendidikan_terakhir'),
-            'no_tlp' => $request->input('no_tlp'),
-            'nama_perusahaan' => $request->input('nama_perusahaan'),
-            'alamat_perusahaan' => $request->input('alamat_perusahaan'),
-            'no_perusahaan' => $request->input('no_perusahaan'),
-            'surat_permohonan' => $surat,
-            'status' => 'pending',
-        ]);
-
-
-
-        return redirect()->route('riwayat_pendaftaran')->with('success', 'Pendaftaran berhasil diajukan! Tunggu konfirmasi admin.');
-    }
 
 
 
@@ -63,6 +47,7 @@ class PendaftaranController extends Controller
 
         return view('riwayat-pendaftaran', compact('riwayatPendaftaran'));
     }
+    
 
     public function cancel($id)
     {
@@ -88,32 +73,39 @@ class PendaftaranController extends Controller
         // ]);
 
         $pendaftaran = Pendaftaran::findOrFail($id);
+        $pembayaran = Pembayaran::firstOrNew(['pendaftaran_id' => $pendaftaran->id]);
 
         if ($request->hasFile('bukti_pembayaran')) {
             $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
-            $pendaftaran->update(['bukti_pembayaran' => $buktiPembayaranPath]);
+            
+            $pembayaran->bukti_pembayaran = $buktiPembayaranPath;
+            $pembayaran->status = 'Menunggu Konfirmasi Pembayaran admin';
+            $pembayaran->tanggal_pembayaran = Carbon::now();
+            $pembayaran->save();
+        }
+        if ($request->hasFile('spk')) {
+            $spkTTD = $request->file('spk')->store('spk', 'public');
+            
+            $pendaftaran->spk = $spkTTD;
+            $pendaftaran->status = 'Menunggu Konfirmasi Surat Keputusan';
+            $pendaftaran->save();
         }
 
-        if ($request->hasFile('ttd_surat_keputusan')) {
-            $ttdSuratKeputusanPath = $request->file('ttd_surat_keputusan')->store('ttd_surat_keputusan', 'public');
-            $pendaftaran->update(['ttd_surat_keputusan' => $ttdSuratKeputusanPath]);
-        }
-
-        return redirect()->route('riwayat_pendaftaran')->with('success', 'Pembayaran dan surat keputusan berhasil dikirim . silahkan menunggu persetujuan admin');
+    
+        return redirect()->back()->with('success', 'Pembayaran dan surat keputusan berhasil dikirim . silahkan menunggu persetujuan admin');
     }
 
     public function jadwalPelatihan()
-    {
-        // Mendapatkan pengguna yang login
-        $user = Auth::user();
+{
+    // Mendapatkan pengguna yang sedang masuk
+    $user = Auth::user();
 
-        // Mendapatkan pendaftaran pengguna
-        $pendaftaran = $user->pendaftaran;
-        if ($pendaftaran) {
-            $jadwalPelatihan = $pendaftaran->jadwalPelatihan;
-            return view('jadwal_pelatihan.index', compact('jadwalPelatihan'));
-        } else {
-            return view('jadwal_pelatihan.index', ['jadwalPelatihan' => []]);
-        }
+    $jadwalPelatihan = [];
+    if ($user->pendaftaran && $user->pendaftaran->status === 'Disetujui') {
+        $jadwalPelatihan = $user->pendaftaran->jadwalPelatihan;
     }
+
+    return view('jadwal_pelatihan.index', compact('jadwalPelatihan'));
+}
+
 }

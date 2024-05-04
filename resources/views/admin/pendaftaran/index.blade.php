@@ -1,7 +1,7 @@
 @extends('layouts.dashboard') <!-- Sesuaikan dengan layout admin yang Anda gunakan -->
 
 @section('content')
-    <div class="container mt-5 card p-4">
+    <div class="container-fluid mt-5 card p-4">
         <h2 class="mb-4 fw-bold">Pendaftaran</h2>
 
         @if(count($pendaftaranMenunggu) > 0)
@@ -14,8 +14,10 @@
                             <th scope="col">Nama Perusahaan</th>
                             <th scope="col">Alamat Perusahaan</th>
                             <th scope="col">Tanggal Pendaftaran</th>
+                            <th scope="col">Judul </th>
+                            <th scope="col">Deskripsi</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Kode Billing</th>
+                            <th scope="col">SPK</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -26,15 +28,23 @@
                                 <td>{{ $pendaftaran->user->name }}</td>
                                 <td>{{ $pendaftaran->nama_perusahaan }}</td>
                                 <td>{{ $pendaftaran->alamat_perusahaan }}</td>
+                                <td>{{ $pendaftaran->judul_bimtek }}</td>
+                                <td>{{ $pendaftaran->deskripsi_bimtek }}</td>
                                 <td>{{ $pendaftaran->created_at }}</td>
-                                <td>@if ($pendaftaran->status === "pending")
-                                    
-                                    <span class="badge badge-danger">{{ $pendaftaran->status }}</span>
-                                    @else
-                                    <span class="badge badge-success">{{ $pendaftaran->status }}</span>
-                                @endif
+                                <td>
+                                    @if ($pendaftaran->status == 'menunggu persetujuan admin')
+                                        <span class="badge badge-warning">{{ $pendaftaran->status }}</span>
+                                    @elseif ($pendaftaran->status == 'menunggu kode billing')
+                                    <span class="badge badge-primary">{{ $pendaftaran->status }}</span>
+
+                                    @endif
                                 </td>
-                                <td>{{ $pendaftaran->kode_billing }}</td>
+                                <td>
+                                    {!! $pendaftaran->spk ? '<embed src="' . asset('storage/' . $pendaftaran->spk) . '" type="application/pdf" width="200" height="100"></embed>' : 'belum disetujui' !!}
+                                </td>
+                                
+                                
+                                
                                 
                                 <td>
                                     <a href="{{ route('showDetail', ['id' => $pendaftaran->id]) }}" class="btn btn-info">Detail</a>

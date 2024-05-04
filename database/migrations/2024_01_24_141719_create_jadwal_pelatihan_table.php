@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('jadwal_pelatihan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pendafataran_id')->constrained('pendaftaran')->onDelete('cascade');
+            $table->foreignId('pendaftaran_id')->constrained('pendaftaran')->onDelete('cascade');
             $table->string('tahap');
             $table->date('tanggal_pelaksanaan');
             $table->string('ruangan');
             $table->string('instruktur');
+            $table->string('file_pendukung')->nullable();
             $table->timestamps();
         });
     }

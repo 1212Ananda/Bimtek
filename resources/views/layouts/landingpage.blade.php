@@ -30,7 +30,7 @@
                 <a class="nav-link active" aria-currents="page" href="/riwayat-pendaftaran"><i class="bi bi-person-lines-fill"></i> Riwayat Pendaftaran</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-currents="page" href="/jadwal-pelatihan/user"><i class="bi bi-person-lines-fill"></i> Jadwal Pelatihan</a>
+                <a class="nav-link active" aria-currents="page" href="/user/jadwal-pelatihan"><i class="bi bi-person-lines-fill"></i> Jadwal Pelatihan</a>
               </li>
             @endauth
             

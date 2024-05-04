@@ -9,9 +9,8 @@ class Pendaftaran extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 'nama', 'jabatan', 'pendidikan_terakhir', 'no_tlp', 'nama_perusahaan',
-        'alamat_perusahaan', 'no_perusahaan', 'bukti_pembayaran', 'status','surat_permohonan','kode_billing',
-        'surat_keputusan','ttd_surat_keputusan','konfirmasi_pembayaran', 'jadwal_pelatihan_id'
+        'user_id', 'pelatihan_id','jabatan',  'no_tlp', 'nama_perusahaan',
+        'alamat_perusahaan','judul_bimtek','deskripsi_bimtek','spk', 'no_perusahaan','status','surat_permohonan'
 
     ];
     protected $table = "pendaftaran";
@@ -24,5 +23,10 @@ class Pendaftaran extends Model
     public function jadwalPelatihan()
 {
     return $this->hasMany(JadwalPelatihan::class);
+}
+
+public function pembayaran()
+{
+    return $this->hasOne(Pembayaran::class);
 }
 }

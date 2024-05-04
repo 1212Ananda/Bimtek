@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="card p-3">
             <h2 class="fw-bold">
                 Jadwal Pelatihan
@@ -8,24 +8,31 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Hari</th>
+                        <th>No</th>
+                        <th>Nama Pelatihan</th>
+                        <th>Nama Pendaftar</th>
+                        <th scope="col">Tahap</th>
                         <th scope="col">Tanggal</th>
-                        <th scope="col">Tempat</th>
-                        <th scope="col">Nama Pelatih</th>
-                        <th scope="col">Nama Pendaftar</th>
+                        <th scope="col">Ruangan</th>
+                        <th scope="col">Nama Instruktur</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($jadwalPelatihan as $jadwalPelatihan)
-                        <tr>
-                            <td>{{ $jadwalPelatihan->hari }}</td>
-                            <td>{{ $jadwalPelatihan->tanggal }}</td>
-                            <td>{{ $jadwalPelatihan->tempat }}</td>
-                            <td>{{ $jadwalPelatihan->nama_pelatih }}</td>
-                            <td>{{ $jadwalPelatihan->pendaftaran->nama }}</td>
-
-                        </tr>
-                    @endforeach
+                    @foreach($jadwalPelatihan as $namaPelatihan => $jadwal)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $namaPelatihan }}</td>
+                        <td>{{ $jadwal->first()->pendaftaran->user->name }}</td>
+                        <td>{{ $jadwal->first()->tahap }}</td>
+                        <td>{{ $jadwal->first()->tanggal_pelaksanaan }}</td>
+                        <td>{{ $jadwal->first()->ruangan }}</td>
+                        <td>{{ $jadwal->first()->instruktur }}</td>
+                        <td>
+                            <a href="{{ route('jadwal-pelatihan.show', $jadwal->first()->pendaftaran_id) }}" type="button" class="btn btn-primary detail-btn" data-pelatihan="{{ $namaPelatihan }}">Detail</a>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

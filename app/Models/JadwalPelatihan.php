@@ -11,7 +11,7 @@ class JadwalPelatihan extends Model
     protected $table = 'jadwal_pelatihan';
 
     protected $fillable = [
-        'hari', 'tanggal', 'tempat', 'nama_pelatih', 'pendaftaran_id',
+        'pendaftaran_id', 'tahap', 'tanggal_pelaksanaan', 'instruktur', 'ruangan','file_pendukung'
     ];
 
     public function pendaftaran()
