@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JadwalPelatihan;
 use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
+use App\Models\Pelatihan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,11 +27,14 @@ class PendaftaranController extends Controller
             'nama_perusahaan' => 'required|string',
             'alamat_perusahaan' => 'required|string',
             'no_perusahaan' => 'required|string',
-            'judul_bimtek' => 'required|string',
-            'deskripsi_bimtek' => 'required|string',
+            'judul_bimtek' => 'nullable|string',
+            'deskripsi_bimtek' => 'nullable|string',
             'user_id' => 'required',
+            'pelatihan_id' => 'nullable',
+            'biaya' => 'nullable'
         ]);
         $user = Auth::user();
+
         $pendaftaranBelumSukses = Pendaftaran::where('user_id', $user->id)
             ->where('status', '!=', 'Disetujui')
             ->exists();
@@ -109,5 +113,10 @@ class PendaftaranController extends Controller
         }
 
         return view('jadwal_pelatihan.index', compact('jadwalPelatihan'));
+    }
+
+    public function pendaftaranPaket(Pelatihan $pelatihan){
+
+        return view('pendaftaran.pendaftaranPaket', compact('pelatihan'));
     }
 }

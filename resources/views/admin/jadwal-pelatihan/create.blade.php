@@ -6,27 +6,32 @@
             <h2 class="fw-bold mb-4">
                Tambah Jadwal Pelatihan {{$pendaftaran->judul_bimtek}}
             </h2>
-            <form action="{{ route('jadwal-pelatihan.store') }}" method="POST">
+            <form action="{{ route('jadwal-pelatihan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div id="jadwal-container">
                     <div class="jadwal-item mb-3">
                         <input type="hidden" name="pendaftaran_id" value="{{ $pendaftaran->id }}">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="tahap" class="form-label">Tahap</label>
                                 <input type="text" class="form-control" name="tahap[]" required>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="tanggal_pelaksanaan" class="form-label">Tanggal Pelaksanaan</label>
                                 <input type="date" class="form-control" name="tanggal_pelaksanaan[]" required>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="instruktur" class="form-label">Instruktur</label>
                                 <input type="text" class="form-control" name="instruktur[]" required>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="ruangan" class="form-label">Ruangan</label>
                                 <input type="text" class="form-control" name="ruangan[]" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="file_pendukung" class="form-label">File Pendukung</label>
+                                <input type="file" class="form-control" name="file_pendukung[]" required>
+                                
                             </div>
                         </div>
                     </div>
@@ -44,26 +49,30 @@
             var jadwalItem = `
                 <div class="jadwal-item mb-3">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="tahap" class="form-label">Tahap</label>
                             <input type="text" class="form-control" name="tahap[]" required>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="tanggal_pelaksanaan" class="form-label">Tanggal Pelaksanaan</label>
                             <input type="date" class="form-control" name="tanggal_pelaksanaan[]" required>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="instruktur" class="form-label">Instruktur</label>
                             <input type="text" class="form-control" name="instruktur[]" required>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="ruangan" class="form-label">Ruangan</label>
                             <input type="text" class="form-control" name="ruangan[]" required>
                         </div>
+                        <div class="col-md-4">
+                                <label for="file_pendukung" class="form-label">File Pendukung</label>
+                                <input type="file" class="form-control" name="file_pendukung[]" required>
+                            </div>
                     </div>
                 </div>
             `;
-            $('#jadwal-container').append(jadwalItem);
+            $('#jadwal-container').append(jadwalItem).slideDown();
         });
     });
 </script>

@@ -51,6 +51,7 @@
 
               
             </div>
+            @if ($pendaftaran->status == 'Menunggu Persetujuan Admin')
             <div class="row  m-3 p-3 shadow">
                 <div class="col-md-11">
                     <h2 class="fw-semibold">
@@ -70,6 +71,7 @@
                     </form>
                 </div>
             </div>
+            @endif
         </div>
        
     </div>

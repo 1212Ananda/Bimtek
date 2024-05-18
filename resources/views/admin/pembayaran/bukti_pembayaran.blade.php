@@ -32,7 +32,7 @@
 
                                 <td>{{ $pembayaran->kode_billing }}</td>
                                 <td>{{ $pembayaran->jumlah_pembayaran }}</td>
-                                <td><img src="{{ asset('storage/' . $pembayaran->bukti_pembayaran) }}" width="100" height="100" alt="">
+                                <td><embed src="{{ asset('storage/' . $pembayaran->bukti_pembayaran) }}" width="100" height="100" alt=""></embed>
                                     <a href="{{ asset('storage/' . $pembayaran->bukti_pembayaran) }}" target="_blank">Lihat bukti pembayaran</a>
                                 </td>
                                 <td>{{ $pembayaran->tanggal_pembayaran }}</td>

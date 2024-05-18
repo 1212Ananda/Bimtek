@@ -91,7 +91,7 @@
             @endif
         </h1>
         <div class="card p-5 my-4">
-            @if ($pendaftaran->status == 'menunggu persetujuan admin')
+            @if ($pendaftaran->status == 'menunggu persetujuan admin' || $pendaftaran->status == 'menunggu kode billing')
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-1 row">
@@ -161,7 +161,7 @@
                                 <label for="status" class="form-label">Status</label>
                             </div>
                             <div class="col-md-9">
-                                <span>:<span class="badge bg-warning"> {{ $pendaftaran->status }}</span></span>
+                                <span>:<span class="badge bg-warning"> Menunggu persetujuan admin</span></span>
                             </div>
                         </div>
 
@@ -179,6 +179,14 @@
                             </div>
                             <div class="col-md-9">
                                 <span>: {{ $pendaftaran->user->name }}</span>
+                            </div>
+                        </div>
+                        <div class="mb-1 row">
+                            <div class="col-md-3">
+                                <label for="judul_bimtek" class="form-label">Nama Pelatihan</label>
+                            </div>
+                            <div class="col-md-9">
+                                <span>: {{ $pendaftaran->judul_bimtek }}</span>
                             </div>
                         </div>
                         <div class="mb-1 row">

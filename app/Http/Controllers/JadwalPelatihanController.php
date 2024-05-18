@@ -29,26 +29,29 @@ class JadwalPelatihanController extends Controller
      */
     public function store(Request $request)
     {
+       
         $pendaftaran_id = $request->input('pendaftaran_id');
+    
+        $jadwalData = [];
+        foreach ($request->tahap as $key => $value) {
 
-    $jadwalData = [];
-    foreach ($request->tahap as $key => $value) {
-        $jadwalData[] = [
-            'pendaftaran_id' => $pendaftaran_id,
-            'tahap' => $request->tahap[$key],
-            'tanggal_pelaksanaan' => $request->tanggal_pelaksanaan[$key],
-            'instruktur' => $request->instruktur[$key],
-            'ruangan' => $request->ruangan[$key],
-            'file_pendukung' => 'file pendukung',
-        ];
+            $file = $request->file('file_pendukung')[$key]->store('jadwal_pelatihan', 'public');
+    
+            $jadwalData[] = [
+                'pendaftaran_id' => $pendaftaran_id,
+                'tahap' => $request->tahap[$key],
+                'tanggal_pelaksanaan' => $request->tanggal_pelaksanaan[$key],
+                'instruktur' => $request->instruktur[$key],
+                'ruangan' => $request->ruangan[$key],
+                'file_pendukung' => $file, 
+            ];
+        }
+    
+        JadwalPelatihan::insert($jadwalData);
+    
+        return redirect()->route('admin_jadwal-pelatihan')->with('success', 'Jadwal pelatihan berhasil ditambahkan');
     }
-
-    // Simpan data jadwal ke dalam database
-    JadwalPelatihan::insert($jadwalData);
-
-    // Redirect ke halaman yang sesuai
-    return redirect()->route('admin_jadwal-pelatihan')->with('success', 'Jadwal pelatihan berhasil ditambahkan');
-    }
+    
 
     /**
      * Display the specified resource.

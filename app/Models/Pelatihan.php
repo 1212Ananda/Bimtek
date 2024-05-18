@@ -22,4 +22,11 @@ class Pelatihan extends Model
         'biaya',
         'kontak',
     ];
+    protected $table = "pelatihans";
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+   
 }

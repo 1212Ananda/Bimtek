@@ -9,13 +9,16 @@
                 <label for="kode_billing" class="form-label">Kode Billing</label>
                 <input type="text" class="form-control" id="kode_billing" name="kode_billing" required>
             </div>
+
             <div class="mb-3">
                 <label for="jumlah_pembayaran" class="form-label">Jumlah Pembayaran</label>
-                <input type="number" class="form-control" id="jumlah_pembayaran" name="jumlah_pembayaran" required>
+                <input type="number" class="form-control" id="jumlah_pembayaran" 
+                       name="jumlah_pembayaran" 
+                       value="{{ $pendaftaran->biaya ?? '' }}" 
+                       {{ $pendaftaran->biaya ? 'readonly' : 'required' }}>
             </div>
+
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
-      
     </div>
-
 @endsection

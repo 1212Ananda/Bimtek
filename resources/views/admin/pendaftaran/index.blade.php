@@ -9,7 +9,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">No</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Nama Perusahaan</th>
                             <th scope="col">Alamat Perusahaan</th>
@@ -28,16 +28,11 @@
                                 <td>{{ $pendaftaran->user->name }}</td>
                                 <td>{{ $pendaftaran->nama_perusahaan }}</td>
                                 <td>{{ $pendaftaran->alamat_perusahaan }}</td>
+                                <td>{{ $pendaftaran->created_at }}</td>
                                 <td>{{ $pendaftaran->judul_bimtek }}</td>
                                 <td>{{ $pendaftaran->deskripsi_bimtek }}</td>
-                                <td>{{ $pendaftaran->created_at }}</td>
                                 <td>
-                                    @if ($pendaftaran->status == 'menunggu persetujuan admin')
-                                        <span class="badge badge-warning">{{ $pendaftaran->status }}</span>
-                                    @elseif ($pendaftaran->status == 'menunggu kode billing')
                                     <span class="badge badge-primary">{{ $pendaftaran->status }}</span>
-
-                                    @endif
                                 </td>
                                 <td>
                                     {!! $pendaftaran->spk ? '<embed src="' . asset('storage/' . $pendaftaran->spk) . '" type="application/pdf" width="200" height="100"></embed>' : 'belum disetujui' !!}

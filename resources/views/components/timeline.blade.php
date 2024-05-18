@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="timeline-step">
-                    <div class="timeline-content {{ $pendaftaran->status === 'Menunggu Pembayaran' ? 'active' : '' }}" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2004">
+                    <div class="timeline-content {{ $pendaftaran->status === 'Menunggu Pembayaran'  || $pendaftaran->status == 'menunggu kode billing' ? 'active' : '' }}" data-toggle="popover" data-trigger="hover" data-placement="top" title="" data-content="And here's some amazing content. It's very engaging. Right?" data-original-title="2004">
                         <div class="inner-circle"></div>
                         <p class="h6 text-muted mt-3 mb-1">Pembayaran dan</p>
                         <p class="h6 text-muted mb-0 mb-lg-0">Persetujuan</p>

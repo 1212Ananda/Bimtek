@@ -32,7 +32,7 @@
             <div class="col-lg-3 card p-3">
                 <div class="Langkah 1">
                     <img src="../img/langkah1.jpg" alt="book images" style="width: 100px;">
-                    <h3>1. si Data Diri</h3>
+                    <h3>1. Isi Data Diri</h3>
                 </div>
             </div>
             <div class="col-lg-3 card p-3">
@@ -118,11 +118,12 @@
              @foreach ($pelatihans as $item)
              <tr>
                 <th scope="row">1</th>
-                <td>Penyelenggaraan Uji Profesi dan Uji Banding Antar Laboratorium Berdasarkan ISO/ IEC 170:2023</td>
-                <td>17-18 Agustus 2024</td>
-                <td>2.200.000</td>
-                <td>08923239221</td>
-                <td><button type="button" class="btn btn-primary">Daftar</button></td>
+                <td>{{$item->judul_bimtek}}</td>
+                <td>{{$item->waktu}}</td>
+                <td>{{$item->biaya}}</td>
+                <td>{{$item->kontak}}</td>
+                <td><a href="{{ route('pendaftaran.paket', $item->id) }}" class="btn btn-primary">Daftar</a>
+                </td>
               </tr>
              @endforeach
              

@@ -22,7 +22,14 @@
                         <td>{{ $jadwal->tanggal_pelaksanaan }}</td>
                         <td>{{ $jadwal->ruangan }}</td>
                         <td>{{ $jadwal->instruktur }}</td>
-                        <td>{{ $jadwal->file_pendukung }}</td>
+                        <td><div class="d-flex flex-column">
+                            {!! $jadwal->file_pendukung
+                                ? '<embed src="' .
+                                    asset('storage/' . $jadwal->file_pendukung) .
+                                    '" type="application/pdf" width="200" height="100"></embed>'
+                                : 'belum disetujui' !!}
+                            <a href="{{ asset('storage/' . $jadwal->file_pendukung) }}" target="_blank">Unduh SPK</a>
+                        </div></td>
                     </tr>
                 @endforeach
             </tbody>

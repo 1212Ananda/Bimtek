@@ -32,7 +32,7 @@
                                 
                                 <td>{!! $pembayaran->kode_billing ? ` $pembayaran->kode_billing ` : 'KODE BILLING BELUM DIBUAT' !!}</td>
                                 <td>
-                                    Ini biaya
+                                    {{$pembayaran->biaya}}
                                 </td>
                                
                                

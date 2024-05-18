@@ -11,7 +11,6 @@
                         <th>No</th>
                         <th>Nama Pelatihan</th>
                         <th>Nama Pendaftar</th>
-                        <th scope="col">Tahap</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Ruangan</th>
                         <th scope="col">Nama Instruktur</th>
@@ -24,7 +23,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $namaPelatihan }}</td>
                         <td>{{ $jadwal->first()->pendaftaran->user->name }}</td>
-                        <td>{{ $jadwal->first()->tahap }}</td>
+                        <td><a href="{{  $jadwal->first()->file_pendukung}}">Lihat</a></td>
                         <td>{{ $jadwal->first()->tanggal_pelaksanaan }}</td>
                         <td>{{ $jadwal->first()->ruangan }}</td>
                         <td>{{ $jadwal->first()->instruktur }}</td>
