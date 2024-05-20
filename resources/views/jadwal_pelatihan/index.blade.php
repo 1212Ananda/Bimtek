@@ -2,43 +2,50 @@
 
 @section('content')
     <div class="container">
-        @if(!empty($jadwalPelatihan))
-            <h2 class="text-center my-3">Jadwal pelatihan : {{ $jadwalPelatihan->first()->pendaftaran->judul_bimtek }}</h2>.
-            <div class="card p-3 shadow">
-                
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Tahap</th>
-                        <th>Tanggal</th>
-                        <th>Ruangan</th>
-                        <th>Instruktur</th>
-                        <th>File pendukung</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($jadwalPelatihan as $index => $jadwal)
-                        <tr>
-                            <td>{{ $jadwal->tahap }}</td>
-                            <td>{{ $jadwal->tanggal_pelaksanaan }}</td>
-                            <td>{{ $jadwal->ruangan }}</td>
-                            <td>{{ $jadwal->instruktur }}</td>
-                        </td>
-                        <td><div class="d-flex flex-column">
-                            {!! $jadwal->file_pendukung
-                                ? '<embed src="' .
-                                    asset('storage/' . $jadwal->file_pendukung) .
-                                    '" type="application/pdf" width="200" height="100"></embed>'
-                                : 'belum disetujui' !!}
-                            <a href="{{ asset('storage/' . $jadwal->file_pendukung) }}" target="_blank">Unduh SPK</a>
-                        </div></td>
-                        </tr>
+        <h2 class="my-3 fw-semibold text-center">Jadwal Pelatihan</h2>
+        <div class="card shadow">
+            <div class="card-body">
+                @if ($jadwalPelatihan->isEmpty())
+                    <p>Tidak ada jadwal pelatihan yang tersedia.</p>
+                @else
+                    @foreach($jadwalPelatihan as $judulBimtek => $jadwal)
+                        <h3>{{ $judulBimtek }}</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tahap</th>
+                                    <th>Nama Pendaftar</th>
+                                    <th>Tanggal</th>
+                                    <th>Ruangan</th>
+                                    <th>Nama Instruktur</th>
+                                    <th>File Pendukung</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($jadwal as $jadwalItem)
+                                    <tr>
+                                        <td>{{ $jadwalItem->tahap }}</td>
+                                        <td>{{ $jadwalItem->pendaftaran->user->name }}</td>
+                                        <td>{{ $jadwalItem->tanggal_pelaksanaan }}</td>
+                                        <td>{{ $jadwalItem->ruangan }}</td>
+                                        <td>{{ $jadwalItem->instruktur }}</td>
+                                        <td>
+                                            @if($jadwalItem->file_pendukung)
+                                                <div class="d-flex flex-column">
+                                                    <embed src="{{ asset('storage/' . $jadwalItem->file_pendukung) }}" type="application/pdf" width="200" height="100"></embed>
+                                                    <a href="{{ asset('storage/' . $jadwalItem->file_pendukung) }}" target="_blank">Unduh SPK</a>
+                                                </div>
+                                            @else
+                                                Tidak ada file pendukung
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     @endforeach
-                </tbody>
-            </table>
+                @endif
             </div>
-        @else
-            <p class="my-5 text-center fw-semibold">~ Anda belum mendaftar pada jadwal pelatihan apapun atau pendaftaran Anda belum disetujui. ~</p>
-        @endif
+        </div>
     </div>
 @endsection

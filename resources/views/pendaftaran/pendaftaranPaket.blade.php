@@ -53,10 +53,7 @@
 
                 </div>
                 <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="kontak" class="form-label">Kontak:</label>
-                        <input type="text" class="form-control" name="kontak" value="{{ $pelatihan->kontak }}" readonly required>
-                    </div>
+                   
 
                     <div class="mb-3">
                         <label for="jabatan" class="form-label">Jabatan:</label>

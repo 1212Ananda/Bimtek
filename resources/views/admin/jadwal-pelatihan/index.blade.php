@@ -23,7 +23,6 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $namaPelatihan }}</td>
                         <td>{{ $jadwal->first()->pendaftaran->user->name }}</td>
-                        <td><a href="{{  $jadwal->first()->file_pendukung}}">Lihat</a></td>
                         <td>{{ $jadwal->first()->tanggal_pelaksanaan }}</td>
                         <td>{{ $jadwal->first()->ruangan }}</td>
                         <td>{{ $jadwal->first()->instruktur }}</td>

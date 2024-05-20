@@ -119,7 +119,7 @@
              <tr>
                 <th scope="row">1</th>
                 <td>{{$item->judul_bimtek}}</td>
-                <td>{{$item->waktu}}</td>
+                <td>{{ \Carbon\Carbon::parse($item->waktu)->format('d F Y H:i') }}</td>
                 <td>{{$item->biaya}}</td>
                 <td>{{$item->kontak}}</td>
                 <td><a href="{{ route('pendaftaran.paket', $item->id) }}" class="btn btn-primary">Daftar</a>

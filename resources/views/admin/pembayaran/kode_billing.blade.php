@@ -14,8 +14,6 @@
                             <th scope="col">Nama Perusahaan</th>
                             <th scope="col">Alamat Perusahaan</th>
                             <th>Tanggal</th>
-                            <th scope="col">Kode Billing</th>
-                            <th scope="col">Biaya</th>
                             <th scope="col">Surat Keputusan</th>
                             <th scope="col">Status</th>
                             <th scope="col">Aksi</th>
@@ -29,13 +27,6 @@
                                 <td>{{ $pembayaran->nama_perusahaan }}</td>
                                 <td>{{ $pembayaran->alamat_perusahaan }}</td>
                                 <td>{{ $pembayaran->created_at }}</td>
-                                
-                                <td>{!! $pembayaran->kode_billing ? ` $pembayaran->kode_billing ` : 'KODE BILLING BELUM DIBUAT' !!}</td>
-                                <td>
-                                    {{$pembayaran->biaya}}
-                                </td>
-                               
-                               
                                 <td>
                                    
                                     {!! $pembayaran->spk ? '<embed src="' . asset('storage/' . $pembayaran->spk) . '" type="application/pdf" width="200" height="100"></embed>' : 'belum disetujui' !!}

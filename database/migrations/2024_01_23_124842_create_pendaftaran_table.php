@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('alamat_perusahaan');
             $table->string('no_perusahaan');
             $table->string('judul_bimtek');
-            $table->text('deskripsi_bimtek');
+            $table->text('deskripsi_bimtek')->nullable();
             $table->string('spk')->nullable();
             $table->decimal('biaya')->nullable();
             $table->string('status')->default('menunggu persetujuan admin');

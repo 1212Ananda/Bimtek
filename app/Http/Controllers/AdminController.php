@@ -181,7 +181,16 @@ class AdminController extends Controller
 
 
     public function tambahJadwalPelatihan(){
-        $pendaftaran = Pendaftaran::all()->where('status','Disetujui');
+  
+        $pendaftaran = Pendaftaran::leftJoin('jadwal_pelatihan', function($join) {
+            $join->on('pendaftaran.id', '=', 'jadwal_pelatihan.pendaftaran_id');
+        })
+        ->select('pendaftaran.*')
+        ->where('status','Disetujui')
+        ->whereNull('jadwal_pelatihan.id')
+        ->get();
+
+
         return view("admin.jadwal-pelatihan.tambah",compact('pendaftaran'));
     }
 }

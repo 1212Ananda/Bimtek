@@ -26,11 +26,8 @@
                                 <td>{{ $pembayaran->pendaftaran->nama_perusahaan }}</td>
                                 <td>{{ $pembayaran->pendaftaran->alamat_perusahaan }}</td>
                                 <td>{{ $pembayaran->status }}</td>
-                                
                                 <td>{{ $pembayaran->kode_billing }}</td>
                                 <td>{{ $pembayaran->jumlah_pembayaran }}</td>
-                                
-                                
                             </tr>
                         @endforeach
                     </tbody>

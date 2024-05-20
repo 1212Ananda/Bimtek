@@ -20,16 +20,14 @@ use App\Http\Controllers\PelatihanController;
 */
 
 
-Route::resource('pendaftaran', PendaftaranController::class);
 Route::get('/', [LandingpageController::class, 'index'])->name('landingpage');
-
-
 
 Auth::routes();
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/admin/pendaftaran', [AdminController::class, 'pendaftaranMenunggu'])->name('admin_pendaftaran');
     Route::get('/admin/pendaftaran', [AdminController::class, 'pendaftaranMenunggu'])->name('admin_pendaftaran');
 
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin_users');
@@ -69,4 +67,7 @@ Route::middleware(['auth', 'role:perusahaan'])->group(function () {
     Route::get('/user/jadwal-pelatihan', [PendaftaranController::class, 'jadwalPelatihan'])->name('lihat-jadwal');
     Route::get('/riwayat-pendaftaran', [PendaftaranController::class, 'riwayatPendaftaran'])->name('riwayat_pendaftaran');   
     Route::get('/pendaftaranPaket/{pelatihan}', [PendaftaranController::class, 'pendaftaranPaket'])->name('pendaftaran.paket');
+    
+    Route::resource('pendaftaran', PendaftaranController::class);
+
 });

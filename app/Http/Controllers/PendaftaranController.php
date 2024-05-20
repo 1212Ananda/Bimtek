@@ -104,14 +104,13 @@ class PendaftaranController extends Controller
 
     public function jadwalPelatihan()
     {
-        // Mendapatkan pengguna yang sedang masuk
-        $user = Auth::user();
-
-        $jadwalPelatihan = [];
-        if ($user->pendaftaran && $user->pendaftaran->status === 'Disetujui') {
-            $jadwalPelatihan = $user->pendaftaran->jadwalPelatihan;
-        }
-
+        $jadwalPelatihan = JadwalPelatihan::whereHas('pendaftaran', function($query) {
+            $query->where('user_id', Auth::id());
+        })->join('pendaftaran', 'jadwal_pelatihan.pendaftaran_id', '=', 'pendaftaran.id')
+          ->with('pendaftaran')
+          ->get()
+          ->groupBy('pendaftaran.judul_bimtek');
+    
         return view('jadwal_pelatihan.index', compact('jadwalPelatihan'));
     }
 

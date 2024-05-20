@@ -18,8 +18,8 @@ class JadwalPelatihan extends Model
     {
         return $this->belongsTo(Pendaftaran::class);
     }
-    public function jadwalPelatihan()
-{
-    return $this->hasMany(JadwalPelatihan::class);
-}
+//     public function jadwalPelatihan()
+// {
+//     return $this->hasMany(JadwalPelatihan::class);
+// }
 }

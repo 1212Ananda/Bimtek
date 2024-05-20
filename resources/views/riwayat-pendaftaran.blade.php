@@ -13,6 +13,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nama</th>
+                            <th scope="col">Nama Pelatihan</th>
                             <th scope="col">Jabatan</th>
                             <th scope="col">No. Telepon</th>
                             <th scope="col">Status</th>
@@ -26,6 +27,7 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $pendaftaran->user->name }}</td>
+                                <td>{{ $pendaftaran->judul_bimtek }}</td>
                                 <td>{{ $pendaftaran->jabatan }}</td>
                                 <td>{{ $pendaftaran->no_tlp }}</td>
                                 <td>
