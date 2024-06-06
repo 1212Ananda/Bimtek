@@ -19,7 +19,8 @@
                 @foreach($jadwalPelatihan as $jadwal)
                     <tr>
                         <td>{{ $jadwal->tahap }}</td>
-                        <td>{{ $jadwal->tanggal_pelaksanaan }}</td>
+                        <td>{{ \Carbon\Carbon::parse($jadwal->tanggal_pelaksanaan)->translatedFormat('d F Y \j\a\m H.i') }}</td>
+
                         <td>{{ $jadwal->ruangan }}</td>
                         <td>{{ $jadwal->instruktur }}</td>
                         <td><div class="d-flex flex-column">
@@ -28,7 +29,7 @@
                                     asset('storage/' . $jadwal->file_pendukung) .
                                     '" type="application/pdf" width="200" height="100"></embed>'
                                 : 'belum disetujui' !!}
-                            <a href="{{ asset('storage/' . $jadwal->file_pendukung) }}" target="_blank">Unduh SPK</a>
+                            <a href="{{ asset('storage/' . $jadwal->file_pendukung) }}" target="_blank">Unduh File Pendukung</a>
                         </div></td>
                     </tr>
                 @endforeach

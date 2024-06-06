@@ -32,7 +32,14 @@ class PendaftaranController extends Controller
             'user_id' => 'required',
             'pelatihan_id' => 'nullable',
             'biaya' => 'nullable'
+        ],[
+            'jabatan.required' => 'Kolom jabatan wajib diisi.',
+            'no_tlp.required' => 'Kolom no. telepon wajib diisi.',
+            'nama_perusahaan.required' => 'Kolom nama perusahaan wajib diisi.',
+            'alamat_perusahaan.required' => 'Kolom alamat perusahaan wajib diisi.',
+            'no_perusahaan.required' => 'Kolom no. telepon perusahaan wajib diisi.'
         ]);
+        
         $user = Auth::user();
 
         $pendaftaranBelumSukses = Pendaftaran::where('user_id', $user->id)
@@ -60,7 +67,10 @@ class PendaftaranController extends Controller
     {
         $pendaftaran = Pendaftaran::findOrFail($id);
 
-        $pendaftaran->delete();
+        if ($pendaftaran->status !== 'Disetujui' && $pendaftaran->status !== 'Ditolak') {
+            $pendaftaran->status = 'Dibatalkan';
+            $pendaftaran->save();
+        }
 
         return redirect()->route('riwayat_pendaftaran')->with('success', 'Pendaftaran berhasil dibatalkan.');
     }
@@ -118,4 +128,6 @@ class PendaftaranController extends Controller
 
         return view('pendaftaran.pendaftaranPaket', compact('pelatihan'));
     }
+
+    
 }

@@ -12,4 +12,10 @@ class LandingpageController extends Controller
         $pelatihans = Pelatihan::all();
         return view('welcome',compact('pelatihans'));
     }
+
+    public function kontak()
+    {
+
+        return view('kontak'); 
+    }
 }

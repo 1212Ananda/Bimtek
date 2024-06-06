@@ -1,7 +1,7 @@
 @extends('layouts.dashboard') <!-- Sesuaikan dengan layout admin yang Anda gunakan -->
 
 @section('content')
-    <div class="container-fluid mt-5 card p-4">
+    <div class="container mt-5 card p-4">
         <h2 class="mb-4 fw-bold">Pendaftaran</h2>
 
         @if(count($pendaftaranMenunggu) > 0)
@@ -28,7 +28,8 @@
                                 <td>{{ $pendaftaran->user->name }}</td>
                                 <td>{{ $pendaftaran->nama_perusahaan }}</td>
                                 <td>{{ $pendaftaran->alamat_perusahaan }}</td>
-                                <td>{{ $pendaftaran->created_at }}</td>
+                                <td>{{ \Carbon\Carbon::parse($pendaftaran->created_at)->translatedFormat('d F Y \j\a\m H.i') }}</td>
+
                                 <td>{{ $pendaftaran->judul_bimtek }}</td>
                                 <td>{{ $pendaftaran->deskripsi_bimtek }}</td>
                                 <td>
@@ -37,10 +38,6 @@
                                 <td>
                                     {!! $pendaftaran->spk ? '<embed src="' . asset('storage/' . $pendaftaran->spk) . '" type="application/pdf" width="200" height="100"></embed>' : 'belum disetujui' !!}
                                 </td>
-                                
-                                
-                                
-                                
                                 <td>
                                     <a href="{{ route('showDetail', ['id' => $pendaftaran->id]) }}" class="btn btn-info">Detail</a>
                                 </td>

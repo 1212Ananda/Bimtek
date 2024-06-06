@@ -21,9 +21,18 @@ use App\Http\Controllers\PelatihanController;
 
 
 Route::get('/', [LandingpageController::class, 'index'])->name('landingpage');
+Route::get('/kontak', [LandingpageController::class, 'kontak'])->name('kontak');
 
 Auth::routes();
-
+Route::middleware('auth')->group(function () {
+    
+    Route::get('/admin/pembayaran', [AdminController::class, 'pembayaran'])->name('admin_pembayaran');
+    Route::delete('/pendaftaran/{id}/cancel', [PendaftaranController::class, 'cancel'])->name('cancel_pendaftaran');
+    Route::get('/admin/pelatihan', [AdminController::class, 'pelatihan'])->name('admin_pelatihan');
+    Route::get('/admin/jadwal-pelatihan', [AdminController::class, 'jadwalPelatihan'])->name('admin_jadwal-pelatihan');
+    Route::get('/admin/jadwal-pelatihan/tambah', [AdminController::class, 'tambahJadwalPelatihan'])->name('admin_jadwal-pelatihan.tambah');
+    Route::resource('jadwal-pelatihan', JadwalPelatihanController::class);
+});
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -45,7 +54,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:bendahara'])->group(function () {
 
     Route::post('/konfirmasi-pembayaran/{id}', [AdminController::class, 'konfirmasiPembayaran'])->name('konfirmasi-pembayaran');
-    Route::get('/admin/pembayaran', [AdminController::class, 'pembayaran'])->name('admin_pembayaran');
     Route::get('/admin/pembayaran/kode-billing', [AdminController::class, 'pembayaranKodeBilling'])->name('admin.kodeBilling');
     Route::get('/admin/pembayaran/kode-billing/{id}/create', [AdminController::class, 'createKodeBilling'])->name('kode_billing.create');
     Route::post('/admin/pembayaran/kode-billing/{id}/store', [AdminController::class, 'storeKodeBilling'])->name('kode_billing.store');
@@ -54,10 +62,6 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
 
 Route::middleware(['auth', 'role:instruktur'])->group(function () {
 
-    Route::get('/admin/pelatihan', [AdminController::class, 'pelatihan'])->name('admin_pelatihan');
-    Route::get('/admin/jadwal-pelatihan', [AdminController::class, 'jadwalPelatihan'])->name('admin_jadwal-pelatihan');
-    Route::get('/admin/jadwal-pelatihan/tambah', [AdminController::class, 'tambahJadwalPelatihan'])->name('admin_jadwal-pelatihan.tambah');
-    Route::resource('jadwal-pelatihan', JadwalPelatihanController::class);
 });
 Route::middleware(['auth', 'role:perusahaan'])->group(function () {
 
