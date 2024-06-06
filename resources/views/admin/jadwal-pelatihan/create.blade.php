@@ -18,8 +18,9 @@
                             </div>
                             <div class="col-md-2">
                                 <label for="tanggal_pelaksanaan" class="form-label">Tanggal Pelaksanaan</label>
-                                <input type="date" class="form-control" name="tanggal_pelaksanaan[]" required>
+                                <input type="datetime-local" class="form-control" name="tanggal_pelaksanaan[]" required>
                             </div>
+                            
                             <div class="col-md-2">
                                 <label for="instruktur" class="form-label">Instruktur</label>
                                 <input type="text" class="form-control" name="instruktur[]" required>

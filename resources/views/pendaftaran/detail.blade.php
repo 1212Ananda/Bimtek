@@ -83,91 +83,94 @@
                 {{ session('success') }}
             </div>
         @endif
-        <h1 class="mb-4 fw-semibold text-center">
+        <h2 class="mb-4 fw-semibold text-center">
             @if ($pendaftaran->status == 'menunggu persetujuan admin')
                 Detail Pendaftaran
             @elseif ($pendaftaran->status == 'Menunggu Pembayaran')
                 Detail Pembayaran
             @endif
-        </h1>
-        <div class="card p-5 my-4">
+        </h2>
+        <div class="card p-5 my-4  shadow" style="border-radius: 16px;border:1px solid blue">
             @if ($pendaftaran->status == 'menunggu persetujuan admin' || $pendaftaran->status == 'menunggu kode billing')
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-1 row">
-                            <div class="col-md-3">
-                                <label for="nama" class="form-label">Nama</label>
-                            </div>
-                            <div class="col-md-9">
-                                <span>: {{ $pendaftaran->user->name }}</span>
-                            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-1 row">
+                        <div class="col-md-4">
+                            <label for="nama" class="form-label fw-semibold"><i class="bi bi-person"></i> Nama</label>
                         </div>
-
-                        <div class="mb-1 row">
-                            <div class="col-md-3">
-                                <label for="jabatan" class="form-label">Jabatan</label>
-                            </div>
-                            <div class="col-md-9">
-                                <span>: {{ $pendaftaran->jabatan }}</span>
-                            </div>
-                        </div>
-
-                        <div class="mb-1 row">
-                            <div class="col-md-3">
-                                <label for="nama_perusahaan" class="form-label">Nama Perusahaan</label>
-                            </div>
-                            <div class="col-md-9">
-                                <span>: {{ $pendaftaran->nama_perusahaan }}</span>
-                            </div>
-                        </div>
-                        <div class="mb-1 row">
-                            <div class="col-md-3">
-                                <label for="alamat_perusahaan" class="form-label">Alamat Perusahaan</label>
-                            </div>
-                            <div class="col-md-9">
-                                <span>: {{ $pendaftaran->alamat_perusahaan }}</span>
-                            </div>
+                        <div class="col-md-8">
+                            <span>: {{ $pendaftaran->user->name }}</span>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="mb-1 row">
-                            <div class="col-md-3">
-                                <label for="judul_bimtek" class="form-label">Judul Bimtek</label>
-                            </div>
-                            <div class="col-md-9">
-                                <span>: {{ $pendaftaran->judul_bimtek }}</span>
-                            </div>
+            
+                    <div class="mb-1 row">
+                        <div class="col-md-4">
+                            <label for="jabatan" class="form-label fw-semibold"><i class="bi bi-briefcase"></i> Jabatan</label>
                         </div>
-                        <div class="mb-1 row">
-                            <div class="col-md-3">
-                                <label for="deskripsi_bimtek" class="form-label">Deskripsi Bimtek</label>
-                            </div>
-                            <div class="col-md-9">
-                                <span>: {{ $pendaftaran->deskripsi_bimtek }}</span>
-                            </div>
+                        <div class="col-md-8">
+                            <span>: {{ $pendaftaran->jabatan }}</span>
                         </div>
-
-
-                        <div class="mb-1 row">
-                            <div class="col-md-3">
-                                <label for="no_perusahaan" class="form-label">No. Perusahaan</label>
-                            </div>
-                            <div class="col-md-9">
-                                <span>: {{ $pendaftaran->no_perusahaan }}</span>
-                            </div>
-                        </div>
-                        <div class="mb-1 row">
-                            <div class="col-md-3">
-                                <label for="status" class="form-label">Status</label>
-                            </div>
-                            <div class="col-md-9">
-                                <span>:<span class="badge bg-warning"> Menunggu persetujuan admin</span></span>
-                            </div>
-                        </div>
-
-
                     </div>
+            
+                    <div class="mb-1 row">
+                        <div class="col-md-4">
+                            <label for="nama_perusahaan" class="form-label fw-semibold"><i class="bi bi-building"></i> Nama Perusahaan</label>
+                        </div>
+                        <div class="col-md-8">
+                            <span>: {{ $pendaftaran->nama_perusahaan }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-1 row">
+                        <div class="col-md-4">
+                            <label for="status" class="form-label fw-semibold"><i class="bi bi-info-circle"></i> Status</label>
+                        </div>
+                        <div class="col-md-8">
+                            <span>: <span class="badge p-2 bg-warning" style="border-radius: 32px"> Menunggu persetujuan admin</span></span>
+                        </div>
+                    </div>
+                    
                 </div>
+                <div class="col-md-6">
+                    <div class="mb-1 row">
+                        <div class="col-md-4">
+                            <label for="judul_bimtek" class="form-label fw-semibold"><i class="bi bi-book"></i> Judul Bimtek</label>
+                        </div>
+                        <div class="col-md-8">
+                            <span>: {{ $pendaftaran->judul_bimtek }}</span>
+                        </div>
+                    </div>
+                    <div class="mb-1 row">
+                        <div class="col-md-4">
+                            <label for="deskripsi_bimtek" class="form-label fw-semibold"><i class="bi bi-card-text"></i> Deskripsi Bimtek</label>
+                        </div>
+                        <div class="col-md-8">
+                            <span>: {{ $pendaftaran->deskripsi_bimtek }}</span>
+                        </div>
+                    </div>
+            
+            
+                    <div class="mb-1 row">
+                        <div class="col-md-4">
+                            <label for="no_perusahaan" class="form-label fw-semibold"><i class="bi bi-telephone-fill"></i> No. Perusahaan</label>
+                        </div>
+                        <div class="col-md-8">
+                            <span>: {{ $pendaftaran->no_perusahaan }}</span>
+                        </div>
+                    </div>
+                    <div class="mb-1 row">
+                        <div class="col-md-4">
+                            <label for="alamat_perusahaan" class="form-label fw-semibold"><i class="bi bi-geo-alt"></i> Alamat Perusahaan</label>
+                        </div>
+                        <div class="col-md-8">
+                            <span>: {{ $pendaftaran->alamat_perusahaan }}</span>
+                        </div>
+                    </div>
+            
+            
+                </div>
+            </div>
+            
             @endif
 
             @if ($pendaftaran->status == 'Menunggu Pembayaran')
@@ -175,7 +178,7 @@
                     <div class="col-md-6">
                         <div class="mb-1 row">
                             <div class="col-md-3">
-                                <label for="judul_bimtek" class="form-label">Nama Pemohon</label>
+                                <label for="judul_bimtek" class="form-label fw-semibold">Nama Pemohon</label>
                             </div>
                             <div class="col-md-9">
                                 <span>: {{ $pendaftaran->user->name }}</span>
@@ -183,7 +186,7 @@
                         </div>
                         <div class="mb-1 row">
                             <div class="col-md-3">
-                                <label for="judul_bimtek" class="form-label">Nama Pelatihan</label>
+                                <label for="judul_bimtek" class="form-label fw-semibold">Nama Pelatihan</label>
                             </div>
                             <div class="col-md-9">
                                 <span>: {{ $pendaftaran->judul_bimtek }}</span>
@@ -191,7 +194,7 @@
                         </div>
                         <div class="mb-1 row">
                             <div class="col-md-3">
-                                <label for="judul_bimtek" class="form-label ">Kode Billing</label>
+                                <label for="judul_bimtek" class="form-label fw-semibold ">Kode Billing</label>
                             </div>
                             <div class="col-md-9">
                                 <span>: {{ $pendaftaran->pembayaran->kode_billing }}</span>
@@ -199,7 +202,7 @@
                         </div>
                         <div class="mb-1 row">
                             <div class="col-md-3">
-                                <label for="deskripsi_bimtek" class="form-label">Jumlah Pembayaran</label>
+                                <label for="deskripsi_bimtek" class="form-label fw-semibold">Jumlah Pembayaran</label>
                             </div>
                             <div class="col-md-9">
                                 <span>: {{ $pendaftaran->pembayaran->jumlah_pembayaran }}</span>
@@ -207,7 +210,7 @@
                         </div>
                         <div class="mb-1 row">
                             <div class="col-md-3">
-                                <label for="deskripsi_bimtek" class="form-label">SPK yang harus ditandatangani</label>
+                                <label for="deskripsi_bimtek" class="form-label fw-semibold">SPK yang harus ditandatangani</label>
                             </div>
                             <div class="col-md-9">
                                 @if ($pendaftaran->spk)
@@ -235,11 +238,11 @@
                                 enctype="multipart/form-data" method="POST">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="spkFile" class="form-label">Upload Perjanjian SPK</label>
+                                    <label for="spkFile" class="form-label fw-semibold">Upload Perjanjian SPK</label>
                                     <input class="form-control" type="file" id="spkFile" name="spk">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="buktiPembayaranFile" class="form-label">Upload Bukti Pembayaran</label>
+                                    <label for="buktiPembayaranFile" class="form-label fw-semibold">Upload Bukti Pembayaran</label>
                                     <input class="form-control" type="file" id="buktiPembayaranFile"
                                         name="bukti_pembayaran">
                                 </div>
@@ -263,12 +266,13 @@
 
             @if ($pendaftaran->status === 'Disetujui')
             <div class="alert alert-success" role="alert">
-                <h4 class="alert-heading">Pendaftaran Disetujui</h4>
-                <p>Pendaftaran permohonan bimbingan teknis ada telah disetujui! Silakan menunggu jadwal pelatihan diterbitkan . terimmaksasih.</p>
+                <h4 class="alert-heading">Pendaftaran Berhasil</h4>
+                <p>Permohonan bimbingan teknis Anda telah disetujui! Harap menunggu jadwal pelatihan diterbitkan. Terima kasih.</p>
                 <hr>
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, fugiat!</p>
-                <a href="{{ route('lihat-jadwal') }}" class="btn btn-primary float-end">Cek Jadwal</a>
+                <p class="mb-0">Jika Anda memiliki pertanyaan lebih lanjut, jangan ragu untuk menghubungi kami.</p>
+                <a href="{{ route('lihat-jadwal') }}" class="btn btn-primary float-end">Lihat Jadwal</a>
             </div>
+            
             @endif
 
         </div>

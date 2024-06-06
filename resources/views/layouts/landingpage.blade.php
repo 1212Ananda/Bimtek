@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Bimtek</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-white card" >
+    <nav class="navbar navbar-expand-lg bg-body-white border-bottom shadow-md" >
       <div class="container">
         <img src="../img/logobbkkp.jpeg"  style="max-width: 150px; height: auto;" alt="">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,8 +35,11 @@
             @endauth
             
             <li class="nav-item">
-              <a class="nav-link active" aria-currents="page" href="#"><i class="bi bi-person-lines-fill"></i> Kontak</a>
-            </li>
+              <a class="nav-link active" aria-currents="page" href="{{ route('kontak') }}">
+                  <i class="bi bi-person-lines-fill"></i> Kontak
+              </a>
+          </li>
+          
           </ul>
           <ul class="navbar-nav">
 
@@ -75,8 +78,51 @@
     </nav>
    @yield('content')
 
+
+   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if ($errors->any())
+    <script>
+        let errorMessages = '';
+        @foreach ($errors->all() as $error)
+            errorMessages += "{{ $error }}\n";
+        @endforeach
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: errorMessages,
+        });
+    </script>
+@endif
+@if (session('success') || session('error'))
+    <script>
+        $(document).ready(function() {
+            var successMessage = "{{ session('success') }}";
+            var errorMessage = "{{ session('error') }}";
+
+            if (successMessage) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: successMessage,
+                });
+            }
+
+            if (errorMessage) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: errorMessage,
+                });
+            }
+        });
+    </script>
+@endif
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
   </body>
 </html>
