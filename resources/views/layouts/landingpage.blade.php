@@ -12,7 +12,7 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-body-white card" >
       <div class="container">
-        <img src="../img/logobbkkp.jpeg"  style="max-width: 150px; height: auto;" alt="">
+        <img src="../img/logobbkkp.jpeg"  style="max-width: 250px; height: auto;" alt="">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

@@ -3,8 +3,8 @@
 <section class="container py-5">
     <div class="row d-flex justify-content-center align-items-center" style="height: 70vh">
         <div class="col-md-6">
-            <p class="m-0"> Selamat Datang</p>
-            <h2 class="fw-semibold mb-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero corrupti ratione ducimus </h2> 
+            <p class="m-0" style="font-size: 52px; font-weight: bold;">Selamat Datang</p>
+            <h3 class="fw-semibold mb-5" style="font-weight: 300;">Terima kasih telah mengunjungi situs kami. Mari bergabung dan nikmati berbagai layanan dan kemudahan yang kami tawarkan.</h3>
             @if (Auth::user() != null)
             <a href="/pendaftaran" class="btn btn-success px-4 py-2"  style="background-color: rgb(5, 174, 5);">Daftarr</a>
             @else
@@ -32,29 +32,21 @@
             <div class="col-lg-3 card p-3">
                 <div class="Langkah 1">
                     <img src="../img/langkah1.jpg" alt="book images" style="width: 100px;">
-                    <h3>1. Isi Data Diri</h3>
+                    <h3>1. Isi Data Diri Dan Permohonan</h3>
                 </div>
             </div>
             <div class="col-lg-3 card p-3">
                 <div class="Langkah 2">
                     <img src="../img/langkah2.jpg" alt="book images" style="width: 100px;">
-                    <h3>2. Pengajuan Surat Permohonan</h3>
+                    <h3>2. Upload Kode Billing Dan Bukti Pembayaran</h3>
                 </div>
             </div>
             <div class="col-lg-3 card p-3">
                 <div class="Langkah 3">
                     <img src="../img/langkah3.jpg" alt="book images" style="width: 100px;">
-                    <h3>3. Pembuatan Surat Balasan</h3>
+                    <h3>3. Konfirmasi Surat Pendukung Keputusan</h3>
                 </div>
-            </div>
-            <div class="col-lg-3 card p-3">
-                <div class="Langkah 4">
-                    <img src="../img/langkah4.jpg" alt="book images" style="width: 100px;">
-                    <h3>4. Pembuatan kontrak kerjasama</h3>
-                </div>
-            </div>
-            </div>
-            
+            </div>   
             </div>
         </div>
         <div class="container">
@@ -62,26 +54,21 @@
                 <div class="col-lg-3 card p-3">
                     <div class="Langkah 1">
                         <img src="../img/langkah1.jpg" alt="book images" style="width: 100px;">
-                        <h3>5. Pembuatan invoice dan kode billing</h3>
+                        <h3>4. Menunggu Konfirmasi</h3>
                     </div>
                 </div>
                 <div class="col-lg-3 card p-3">
                     <div class="Langkah 2">
                         <img src="../img/langkah2.jpg" alt="book images" style="width: 100px;">
-                        <h3>6. Penyerahan hasil Permohonan</h3>
+                        <h3>5. Pelaksanaan Kegiatan</h3>
                     </div>
                 </div>
                 <div class="col-lg-3 card p-3">
                     <div class="Langkah 3">
                         <img src="../img/langkah3.jpg" alt="book images" style="width: 100px;">
-                        <h3>7. Finalisasi kegiatan</h3>
+                        <h3>6. Selesai</h3>
                     </div>
                 </div>
-                <div class="col-lg-3 card p-3">
-                    <div class="Langkah 4">
-                        <img src="../img/langkah4.jpg" alt="book images" style="width: 100px;">
-                        <h3>8. Pelaksanaan kegiatan</h3>
-                    </div>
                 </div>
                 </div>
                 

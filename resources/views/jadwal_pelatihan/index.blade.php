@@ -26,15 +26,17 @@
                                     <tr>
                                         <td>{{ $jadwalItem->tahap }}</td>
                                         <td>{{ $jadwalItem->pendaftaran->user->name }}</td>
-                                        <td>{{ $jadwalItem->tanggal_pelaksanaan }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($jadwalItem->tanggal_pelaksanaan)->format('d-m-Y H:i:s') }}</td>
+
                                         <td>{{ $jadwalItem->ruangan }}</td>
                                         <td>{{ $jadwalItem->instruktur }}</td>
                                         <td>
                                             @if($jadwalItem->file_pendukung)
-                                                <div class="d-flex flex-column">
-                                                    <embed src="{{ asset('storage/' . $jadwalItem->file_pendukung) }}" type="application/pdf" width="200" height="100"></embed>
-                                                    <a href="{{ asset('storage/' . $jadwalItem->file_pendukung) }}" target="_blank">Unduh SPK</a>
-                                                </div>
+                                            <div class="d-flex flex-column">
+                                                <embed src="{{ asset('storage/' . $jadwalItem->file_pendukung) }}" type="application/pdf" width="200" height="100"></embed>
+                                                <a href="{{ asset('storage/' . $jadwalItem->file_pendukung) }}" download="SPK_{{ $jadwalItem->id }}">Unduh SPK</a>
+                                            </div>
+                                            
                                             @else
                                                 Tidak ada file pendukung
                                             @endif
