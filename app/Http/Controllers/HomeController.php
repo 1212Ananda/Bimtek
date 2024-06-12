@@ -23,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $countPelatihan = \App\Models\Pelatihan::count();
+        $countUsers = \App\Models\User::count();
+        $countPendaftaran = \App\Models\Pendaftaran::count();
+        $countPembayaran = \App\Models\Pembayaran::count();
+        $recentPendaftaran = \App\Models\Pendaftaran::latest()->take(5)->get();
+        
+        return view('home', compact('countPelatihan', 'countUsers', 'countPendaftaran', 'countPembayaran', 'recentPendaftaran'));
     }
+    
 }
