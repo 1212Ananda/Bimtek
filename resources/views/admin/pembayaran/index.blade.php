@@ -4,7 +4,7 @@
     <div class="container-fluid mt-5">
         <div class="card shadow">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Dara Pembayaran</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Data Pembayaran</h6>
             </div>
     
             @if(count($pembayaran) > 0)

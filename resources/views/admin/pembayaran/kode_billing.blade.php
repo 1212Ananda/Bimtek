@@ -1,12 +1,16 @@
 @extends('layouts.dashboard') <!-- Sesuaikan dengan layout admin yang Anda gunakan -->
 
 @section('content')
-    <div class="container-fluid mt-5 card p-4">
-        
-        @if(count($pembayaran) > 0)
-        <h2 class="mb-4 fw-bold">Menunggu kode billing</h2>
+    <div class="container-fluid mt-5 ">
+        <div class="card shadow border-0">
+          <div class="card-header">
+            <h6 class="m-0 font-weight-bold text-primary">Kode Billing</h6>
+          </div>
+          <div class="card-body">
+            @if(count($pembayaran) > 0)
+       
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
@@ -50,6 +54,9 @@
         @else
             <p class="text-center">Tidak ada pendaftaran yang menunggu kode billing.</p>
         @endif
+          </div>
+        </div>
+       
     </div>
 
 @endsection

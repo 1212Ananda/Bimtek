@@ -1,7 +1,7 @@
 @extends('layouts.dashboard') <!-- Sesuaikan dengan layout admin yang Anda gunakan -->
 
 @section('content')
-    <div class="container mt-5 ">
+    <div class="container-fluid mt-5 ">
         <div class="card shadow">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Pendaftaran</h6>

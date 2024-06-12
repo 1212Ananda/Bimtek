@@ -43,9 +43,12 @@ class PendaftaranController extends Controller
         $user = Auth::user();
 
         $pendaftaranBelumSukses = Pendaftaran::where('user_id', $user->id)
-            ->where('status', '!=', 'Disetujui')
-            ->exists();
-
+    ->where(function($query) {
+        $query->where('status', '!=', 'Disetujui')
+              ->where('status', '!=', 'Dibatalkan')
+              ->where('status', '!=', 'Ditolak');
+    })
+    ->exists();
         if ($pendaftaranBelumSukses) {
             return back()->with('error', 'Anda sudah memiliki pendaftaran yang belum berhasil. Harap selesaikan pendaftaran tersebut terlebih dahulu.');
         }
