@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelatihanController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,7 +72,7 @@ Route::middleware(['auth', 'role:perusahaan'])->group(function () {
     Route::get('/user/jadwal-pelatihan', [PendaftaranController::class, 'jadwalPelatihan'])->name('lihat-jadwal');
     Route::get('/riwayat-pendaftaran', [PendaftaranController::class, 'riwayatPendaftaran'])->name('riwayat_pendaftaran');   
     Route::get('/pendaftaranPaket/{pelatihan}', [PendaftaranController::class, 'pendaftaranPaket'])->name('pendaftaran.paket');
-    
     Route::resource('pendaftaran', PendaftaranController::class);
+    
 
 });

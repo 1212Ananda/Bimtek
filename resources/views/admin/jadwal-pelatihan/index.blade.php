@@ -3,13 +3,13 @@
     <div class="container-fluid">
         <div class="card p-3">
             <h2 class="fw-bold">
-                Jadwal Pelatihan
+                Jadwal Bimtek
             </h2>
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Pelatihan</th>
+                        <th>Nama Bimtek</th>
                         <th>Nama Pendaftar</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Ruangan</th>

@@ -88,7 +88,7 @@
 
 <section>
     <div class="container my-5">
-        <h2 class="fw-semibold text-center mb-5">Pelatihan yang Tersedia</h2>
+        <h2 class="fw-semibold text-center mb-5">Bimtek yang Tersedia</h2>
        <div class="card p-3">
         <table class="table">
             <thead>
