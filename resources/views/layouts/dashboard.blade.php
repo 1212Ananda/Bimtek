@@ -80,7 +80,7 @@
                 </li>
 
                 <li class="nav-item {{ request()->is('admin/users*') ? 'active' : '' }}">
-                    <a class="nav-link" href="/admin/users">
+                    <a class="nav-link" href="/users">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Users</span></a>
                 </li>
