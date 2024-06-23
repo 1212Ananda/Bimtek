@@ -7,6 +7,7 @@ use App\Http\Controllers\PendaftaranController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelatihanController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -40,6 +41,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/pendaftaran', [AdminController::class, 'pendaftaranMenunggu'])->name('admin_pendaftaran');
     Route::get('/admin/pendaftaran', [AdminController::class, 'pendaftaranMenunggu'])->name('admin_pendaftaran');
+    
+    Route::resource('users', UserController::class);
 
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin_users');
     Route::get('admin/pendaftaran/{id}', [AdminController::class, 'showDetail'])->name('showDetail');
@@ -67,13 +70,15 @@ Route::middleware(['auth', 'role:instruktur'])->group(function () {
 });
 Route::middleware(['auth', 'role:perusahaan'])->group(function () {
 
+<<<<<<< HEAD
     // Route::delete('/riwayat_pendaftaran/{id}/cancel', [PendaftaranController::class, 'cancel'])->name('cancel_pendaftaran');
+=======
+>>>>>>> 35ed206146b0774a0802c058f4833baa279e73f1
     Route::get('detail/{id}', [PendaftaranController::class, 'detailPendaftaran'])->name('detailPendaftaran');
     Route::post('/upload-bukti-pembayaran/{id}', [PendaftaranController::class, 'buktiPembayaran'])->name('upload_bukti_pembayaran');
     Route::get('/user/jadwal-pelatihan', [PendaftaranController::class, 'jadwalPelatihan'])->name('lihat-jadwal');
     Route::get('/riwayat-pendaftaran', [PendaftaranController::class, 'riwayatPendaftaran'])->name('riwayat_pendaftaran');   
     Route::get('/pendaftaranPaket/{pelatihan}', [PendaftaranController::class, 'pendaftaranPaket'])->name('pendaftaran.paket');
     Route::resource('pendaftaran', PendaftaranController::class);
-    
 
 });

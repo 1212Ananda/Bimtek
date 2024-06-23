@@ -8,28 +8,37 @@
           <div class="card-body">
             <div class="table-responsive">
               
-        <button type="button" class="btn btn-primary mb-2">Tambah</button>
+        <a href="{{ route('users.create') }}" class="btn btn-primary mb-2">Tambah </a>
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Email</th>
+                        <th>Role</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Ananda</td>
-                        <td>Ananda@gmail.com</td>
-                        <td>
-                          <button type="button" class="btn btn-warning">Edit</button>
-                          <button type="button" class="btn btn-danger">Delete</button>
-                        
-                        </td>
-                        
-                    </tr>
+                   @foreach ($users as $item)
+                   <tr>
+                    <th >{{$loop->iteration}}</th>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->email}}</td>
+                    <td>{{$item->role->nama}}</td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <a href="{{route('users.edit',$item->id)}}" class="btn btn-warning">Edit</a>
+                      <form action="{{ route('users.destroy', $item->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                      </div>
+                    </td>
+                    
+                </tr>
+                   @endforeach
                 </tbody>
             </table>
             </div>
