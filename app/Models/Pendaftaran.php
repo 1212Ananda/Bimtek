@@ -9,9 +9,20 @@ class Pendaftaran extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 'pelatihan_id','jabatan',  'no_tlp', 'nama_perusahaan',
-        'alamat_perusahaan','judul_bimtek','deskripsi_bimtek','spk', 'no_perusahaan','status','surat_permohonan'
-
+        'user_id',
+        'pelatihan_id',
+        'jabatan',
+        'no_tlp',
+        'nama_perusahaan',
+        'alamat_perusahaan',
+        'no_perusahaan',
+        'judul_bimtek',
+        'deskripsi_bimtek',
+        'spk',
+        'biaya',
+        'status',
+        'ttd_admin',
+        'ttd_peserta',
     ];
     protected $table = "pendaftaran";
 

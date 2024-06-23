@@ -17,9 +17,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('jabatan')->nullable();
+            $table->string('no_tlp')->nullable();
+            $table->string('nama_perusahaan')->nullable();
+            $table->string('alamat_perusahaan')->nullable();
+            $table->string('no_perusahaan')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->foreignId('role_id')->references('id')->on('roles');
+            $table->foreignId('role_id')->references('id')->on('roles')->default(4);
         });
     }
 

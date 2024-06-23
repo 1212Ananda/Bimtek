@@ -22,11 +22,14 @@ return new class extends Migration
             $table->string('no_perusahaan');
             $table->string('judul_bimtek');
             $table->text('deskripsi_bimtek')->nullable();
-            $table->string('spk')->nullable();
+            $table->text('spk')->nullable();
             $table->decimal('biaya')->nullable();
             $table->string('status')->default('menunggu persetujuan admin');
+            $table->text('ttd_admin')->nullable(); // TTD Admin disimpan dalam bentuk teks
+            $table->text('ttd_peserta')->nullable(); // TTD Peserta disimpan dalam bentuk teks
             $table->timestamps();
         });
+        
     }
 
     /**

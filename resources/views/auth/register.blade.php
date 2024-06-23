@@ -35,6 +35,24 @@
                         <div class="form-group mb-3">
                             <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation" required>
                         </div>
+
+                        <!-- New fields -->
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" placeholder="Jabatan" name="jabatan" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" placeholder="No Telepon" name="no_tlp" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" placeholder="Nama Perusahaan" name="nama_perusahaan" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" placeholder="Alamat Perusahaan" name="alamat_perusahaan" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" placeholder="No Perusahaan" name="no_perusahaan" required>
+                        </div>
+                        
                         <button type="submit" class="btn btn-primary">Register</button>
                     </form>
                     <div class="mt-3">

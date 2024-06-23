@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/jadwal-pelatihan', [AdminController::class, 'jadwalPelatihan'])->name('admin_jadwal-pelatihan');
     Route::get('/admin/jadwal-pelatihan/tambah', [AdminController::class, 'tambahJadwalPelatihan'])->name('admin_jadwal-pelatihan.tambah');
     Route::resource('jadwal-pelatihan', JadwalPelatihanController::class);
+    Route::get('/jadwal-pelatihan/{pendaftaran_id}/editPelatihan', [JadwalPelatihanController::class, 'editPelatihan'])->name('jadwal-pelatihan.editPelatihan');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -62,11 +63,11 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:instruktur'])->group(function () {
-
+    
 });
 Route::middleware(['auth', 'role:perusahaan'])->group(function () {
 
-    Route::delete('/riwayat_pendaftaran/{id}/cancel', [PendaftaranController::class, 'cancel'])->name('cancel_pendaftaran');
+    // Route::delete('/riwayat_pendaftaran/{id}/cancel', [PendaftaranController::class, 'cancel'])->name('cancel_pendaftaran');
     Route::get('detail/{id}', [PendaftaranController::class, 'detailPendaftaran'])->name('detailPendaftaran');
     Route::post('/upload-bukti-pembayaran/{id}', [PendaftaranController::class, 'buktiPembayaran'])->name('upload_bukti_pembayaran');
     Route::get('/user/jadwal-pelatihan', [PendaftaranController::class, 'jadwalPelatihan'])->name('lihat-jadwal');

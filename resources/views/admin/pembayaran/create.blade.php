@@ -23,6 +23,11 @@
                                    value="{{ $pendaftaran->biaya ?? '' }}" 
                                    {{ $pendaftaran->biaya ? 'readonly' : 'required' }}>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="bank" class="form-label">Bank</label>
+                            <input type="text" class="form-control" id="bank" name="bank" required>
+                        </div>
             
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
