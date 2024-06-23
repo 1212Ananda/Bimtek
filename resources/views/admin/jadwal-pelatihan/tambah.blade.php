@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card shadow border-0">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Jadwal Pelatihan</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Jadwal Bimtek</h6>
             </div>
             <div class="card-body">
 <div class="table-responsive">

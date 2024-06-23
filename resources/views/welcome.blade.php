@@ -44,7 +44,7 @@
             <div class="col-lg-3 card p-3">
                 <div class="Langkah 3">
                     <img src="../img/langkah3.jpg" alt="book images" style="width: 100px;">
-                    <h3>3. Konfirmasi Surat Pendukung Keputusan</h3>
+                    <h3>3. Konfirmasi Surat Perjanjian Kerja</h3>
                 </div>
             </div>   
             </div>
@@ -104,7 +104,7 @@
             <tbody>
              @foreach ($pelatihans as $item)
              <tr>
-                <th scope="row">1</th>
+                <td scope="row">{{$loop->iteration}}</td>
                 <td>{{$item->judul_bimtek}}</td>
                 <td>{{ \Carbon\Carbon::parse($item->waktu)->format('d F Y H:i') }}</td>
                 <td>{{$item->biaya}}</td>

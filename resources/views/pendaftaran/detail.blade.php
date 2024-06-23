@@ -260,7 +260,7 @@
                     <p>Surat keputusan dan bukti pembayaran Anda telah berhasil dikirim. Kami sedang menunggu konfirmasi
                         dari admin. Terima kasih atas kesabaran Anda.</p>
                     <hr>
-                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, fugiat!</p>
+                    <p class="mb-0"></p>
                 </div>
             @endif
 

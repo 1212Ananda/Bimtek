@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1>Detail Jadwal Pelatihan</h1>
+        <h1>Detail Jadwal Bimtek</h1>
         <div class="card p-3">
             
         <table class="table">

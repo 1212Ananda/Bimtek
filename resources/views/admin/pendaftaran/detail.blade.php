@@ -59,10 +59,12 @@
                     </h2>
                     <form action="{{ route('approve', ['id' => $pendaftaran->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-            
+
+                        setujui SPK
+                        
                      
                         <div class="mb-3">
-                            <label for="surat_keputusan" class="form-label">Surat Keputusan:</label>
+                            <label for="surat_keputusan" class="form-label">Surat Perjanjian Kerja:</label>
                             <input type="file" class="form-control" name="spk" accept="application/pdf" required>
                         </div>
             
