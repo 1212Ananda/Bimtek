@@ -21,11 +21,27 @@
                                 </div>
                                 <div class="col-md-2">
                                     <label for="instruktur" class="form-label">Instruktur</label>
-                                    <input type="text" class="form-control" name="instruktur[]" value="{{ $jadwal->instruktur }}" required>
+                                    <select class="form-control" name="instruktur[]" required>
+                                        <option value="Instruktur 1" {{ $jadwal->instruktur == 'Instruktur 1' ? 'selected' : '' }}>Instruktur 1</option>
+                                        <option value="Instruktur 2" {{ $jadwal->instruktur == 'Instruktur 2' ? 'selected' : '' }}>Instruktur 2</option>
+                                        <option value="Instruktur 3" {{ $jadwal->instruktur == 'Instruktur 3' ? 'selected' : '' }}>Instruktur 3</option>
+                                        <option value="Instruktur 4" {{ $jadwal->instruktur == 'Instruktur 4' ? 'selected' : '' }}>Instruktur 4</option>
+                                        <option value="Instruktur 5" {{ $jadwal->instruktur == 'Instruktur 5' ? 'selected' : '' }}>Instruktur 5</option>
+                                        <option value="Instruktur 6" {{ $jadwal->instruktur == 'Instruktur 6' ? 'selected' : '' }}>Instruktur 6</option>
+                                        <option value="Instruktur 7" {{ $jadwal->instruktur == 'Instruktur 7' ? 'selected' : '' }}>Instruktur 7</option>
+                                        <option value="Instruktur 8" {{ $jadwal->instruktur == 'Instruktur 8' ? 'selected' : '' }}>Instruktur 8</option>
+                                        <option value="Instruktur 9" {{ $jadwal->instruktur == 'Instruktur 9' ? 'selected' : '' }}>Instruktur 9</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-2">
                                     <label for="ruangan" class="form-label">Ruangan</label>
-                                    <input type="text" class="form-control" name="ruangan[]" value="{{ $jadwal->ruangan }}" required>
+                                    <select class="form-control" name="instruktur[]" required>
+                                        <option value="ruangan 1" {{ $jadwal->ruangan == 'ruangan 1' ? 'selected' : '' }}>ruangan 1</option>
+                                        <option value="ruangan 2" {{ $jadwal->ruangan == 'ruangan 2' ? 'selected' : '' }}>ruangan 2</option>
+                                        <option value="ruangan 3" {{ $jadwal->ruangan == 'ruangan 3' ? 'selected' : '' }}>ruangan 3</option>
+                                        <option value="ruangan 4" {{ $jadwal->ruangan == 'ruangan 4' ? 'selected' : '' }}>ruangan 4</option>
+                                        <option value="ruangan 5" {{ $jadwal->ruangan == 'ruangan 5' ? 'selected' : '' }}>ruangan 5</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-2">
                                     <label for="file_pendukung" class="form-label">File Pendukung</label>

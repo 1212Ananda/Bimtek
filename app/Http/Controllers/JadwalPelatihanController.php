@@ -21,6 +21,7 @@ class JadwalPelatihanController extends Controller
      */
     public function create()
     {
+        
         return view('admin.jadwal-pelatihan.create');
     }
 
@@ -68,8 +69,9 @@ class JadwalPelatihanController extends Controller
      */
     public function edit($id)
     {
+        $jadwalPelatihan = JadwalPelatihan::all();
         $pendaftaran = Pendaftaran::find($id);
-        return view('admin.jadwal-pelatihan.create',compact('pendaftaran'));
+        return view('admin.jadwal-pelatihan.create',compact('pendaftaran','jadwalPelatihan'));
     }
     public function editPelatihan($pendaftaran_id)
     {

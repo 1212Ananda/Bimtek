@@ -21,14 +21,16 @@
                 </div>
                 <div class="mb-3">
                     <label for="nama_perusahaan" class="form-label">Nama Perusahaan:</label>
-                    <input type="text" class="form-control" name="nama_perusahaan" value="{{ $pendaftaran->nama_perusahaan }}" readonly>
+                    <input type="text" class="form-control" name="nama_perusahaan"
+                        value="{{ $pendaftaran->nama_perusahaan }}" readonly>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="no_perusahaan" class="form-label">No. Perusahaan:</label>
-                    <input type="text" class="form-control" name="no_perusahaan" value="{{ $pendaftaran->no_perusahaan }}" readonly>
+                    <input type="text" class="form-control" name="no_perusahaan"
+                        value="{{ $pendaftaran->no_perusahaan }}" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="alamat_perusahaan" class="form-label">Alamat Perusahaan:</label>
@@ -36,7 +38,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="judul_bimtek" class="form-label">Judul Bimtek:</label>
-                    <input type="text" class="form-control" name="judul_bimtek" value="{{ $pendaftaran->judul_bimtek }}" readonly>
+                    <input type="text" class="form-control" name="judul_bimtek" value="{{ $pendaftaran->judul_bimtek }}"
+                        readonly>
                 </div>
                 <div class="mb-3">
                     <label for="deskripsi_bimtek" class="form-label">Deskripsi Bimtek:</label>
@@ -45,18 +48,22 @@
             </div>
 
             <div class="col-md-12">
-                <!-- Form Surat Perjanjian Kerja dengan Tanda Tangan Digital -->
+                @php
+                    $nomorSurat = '123/BBKKP/VI/2024'; // Contoh nomor surat, ini bisa diambil dari database atau konteks aplikasi
+                    $tanggal = \Carbon\Carbon::now(); // Mengambil tanggal saat ini, bisa disesuaikan dengan kebutuhan
+                @endphp
                 @if ($pendaftaran->status == 'menunggu persetujuan admin')
-                    <form id="approval-form" action="{{ route('approve', $pendaftaran->id) }}" method="POST" enctype="multipart/form-data">
+                    <form id="approval-form" action="{{ route('approve', $pendaftaran->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="surat_perjanjian" class="form-label">Surat Perjanjian Kerja:</label>
                             <textarea class="form-control" name="surat_perjanjian" rows="12" required>
                                 <h2 class="text-center">SURAT PERJANJIAN KERJA</h2>
 
-                                <p class="text-center">Nomor: {{ $nomorSurat->user }}</p>
+                                <p class="text-center">Nomor: {{ $pendaftaran->id }}123/BBKKP/VI/202</p>
 
-                                <p>Pada hari ini, {{ $tanggal->isoFormat('dddd') }}, tanggal {{ $tanggal->day }} bulan {{ $tanggal->isiFormat('MMMM') }} tahun {{ $tanggal->year }}, kami yang bertanda tangan di bawah ini:</p>
+                                <p>Pada hari ini, {{ $tanggal->isoFormat('dddd') }}, tanggal {{ $tanggal->day }} bulan {{ $tanggal->isoFormat('MMMM') }} tahun {{ $tanggal->year }}, kami yang bertanda tangan di bawah ini:</p>
                             
                                 <h3>PIHAK PERTAMA (Penyelenggara):</h3>
                                 <p>Nama       : Balai Besar Kulit, Kulit, Karet, dan Plastik Yogyakarta<br>
@@ -74,47 +81,34 @@
                                 <h3>Pasal 1<br>Maksud dan Tujuan</h3>
                                 <p>Pihak Pertama menyelenggarakan bimbingan teknis (bimtek) dengan tujuan untuk meningkatkan keterampilan dan pengetahuan Pihak Kedua dalam bidang [Bidang Pelatihan].</p>
 
-                                <h3>Pasal 2<br>Ruang Lingkup Pelatihan</h3>
-                                <p>Pelatihan ini mencakup materi-materi berikut:</p>
-                                <ul>
-                                    <li>[Materi 1]</li>
-                                    <li>[Materi 2]</li>
-                                    <li>[Materi 3]</li>
-                                </ul>
 
-                                <h3>Pasal 3<br>Waktu dan Tempat Pelatihan</h3>
-                                <p>Pelatihan akan dilaksanakan pada:<br>
-                                Tanggal  : [Tanggal Pelatihan]<br>
-                                Waktu    : [Waktu Pelatihan]<br>
-                                Tempat   : [Tempat Pelatihan]</p>
-
-                                <h3>Pasal 4<br>Hak dan Kewajiban Pihak Pertama</h3>
+                                <h3>Pasal 2<br>Hak dan Kewajiban Pihak Pertama</h3>
                                 <ul>
                                     <li>Menyediakan fasilitas pelatihan yang memadai.</li>
                                     <li>Memberikan materi pelatihan sesuai dengan yang telah dijadwalkan.</li>
                                     <li>Memberikan sertifikat kepada Pihak Kedua setelah menyelesaikan pelatihan.</li>
                                 </ul>
 
-                                <h3>Pasal 5<br>Hak dan Kewajiban Pihak Kedua</h3>
+                                <h3>Pasal 3<br>Hak dan Kewajiban Pihak Kedua</h3>
                                 <ul>
                                     <li>Mengikuti seluruh rangkaian pelatihan dengan penuh tanggung jawab.</li>
-                                    <li>Membayar biaya pelatihan sebesar [Jumlah Biaya] sebelum pelatihan dimulai.</li>
+                                    <li>Membayar biaya pelatihan sebesar Rp.300.000 sebelum pelatihan dimulai.</li>
                                     <li>Menjaga ketertiban dan mengikuti aturan yang ditetapkan oleh Pihak Pertama selama pelatihan berlangsung.</li>
                                 </ul>
 
-                                <h3>Pasal 6<br>Biaya Pelatihan</h3>
-                                <p>Biaya pelatihan yang harus dibayar oleh Pihak Kedua sebesar [Jumlah Biaya] yang mencakup biaya materi, fasilitas, dan sertifikat pelatihan.</p>
+                                <h3>Pasal 4<br>Biaya Pelatihan</h3>
+                                <p>Biaya pelatihan yang harus dibayar oleh Pihak Kedua sebesar Rp.300.000 yang mencakup biaya materi, fasilitas, dan sertifikat pelatihan.</p>
 
-                                <h3>Pasal 7<br>Pembatalan Pelatihan</h3>
+                                <h3>Pasal 5<br>Pembatalan Pelatihan</h3>
                                 <ul>
                                     <li>Jika Pihak Kedua membatalkan keikutsertaan setelah melakukan pembayaran, maka biaya yang telah dibayar tidak dapat dikembalikan.</li>
                                     <li>Jika pelatihan dibatalkan oleh Pihak Pertama, maka biaya yang telah dibayar oleh Pihak Kedua akan dikembalikan sepenuhnya.</li>
                                 </ul>
 
-                                <h3>Pasal 8<br>Penyelesaian Perselisihan</h3>
+                                <h3>Pasal 6<br>Penyelesaian Perselisihan</h3>
                                 <p>Segala perselisihan yang timbul dari perjanjian ini akan diselesaikan secara musyawarah untuk mufakat. Jika tidak tercapai kesepakatan, maka akan diselesaikan melalui jalur hukum yang berlaku.</p>
 
-                                <h3>Pasal 9<br>Penutup</h3>
+                                <h3>Pasal 7<br>Penutup</h3>
                                 <p>Perjanjian ini dibuat rangkap dua, masing-masing pihak menerima satu rangkap. Perjanjian ini mulai berlaku sejak ditandatangani oleh kedua belah pihak.</p>
 
                                 <p>Demikian surat perjanjian ini dibuat dengan sebenar-benarnya dan tanpa ada paksaan dari pihak manapun.</p>
@@ -138,20 +132,21 @@
                             <input type="hidden" name="tanda_tangan_base64" id="tanda_tangan_base64">
                         </div>
 
-                        <button type="button" class="btn btn-primary" id="save-button">Simpan Surat Perjanjian Kerja</button>
+                        <button type="button" class="btn btn-primary" id="save-button">Simpan Surat Perjanjian
+                            Kerja</button>
                     </form>
 
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
                     <script>
-                        document.addEventListener('DOMContentLoaded', function () {
+                        document.addEventListener('DOMContentLoaded', function() {
                             var canvas = document.querySelector('canvas');
                             var signaturePad = new SignaturePad(canvas);
 
-                            document.getElementById('clear-signature').addEventListener('click', function () {
+                            document.getElementById('clear-signature').addEventListener('click', function() {
                                 signaturePad.clear();
                             });
 
-                            document.getElementById('save-button').addEventListener('click', function () {
+                            document.getElementById('save-button').addEventListener('click', function() {
                                 if (signaturePad.isEmpty()) {
                                     alert("Tanda tangan diperlukan.");
                                 } else {
