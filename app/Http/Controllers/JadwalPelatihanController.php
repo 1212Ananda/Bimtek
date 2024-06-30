@@ -71,14 +71,47 @@ class JadwalPelatihanController extends Controller
         $pendaftaran = Pendaftaran::find($id);
         return view('admin.jadwal-pelatihan.create',compact('pendaftaran'));
     }
+    public function editPelatihan($pendaftaran_id)
+    {
+        $jadwalPelatihan = JadwalPelatihan::where('pendaftaran_id', $pendaftaran_id)->get();
+        $pendaftaran = Pendaftaran::find($pendaftaran_id);
+        return view('admin.jadwal-pelatihan.edit', compact('jadwalPelatihan', 'pendaftaran'));
+    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,string $id)
-    {
-    
+    public function update(Request $request, $pendaftaran_id)
+{
+    $jadwalPelatihan = JadwalPelatihan::where('pendaftaran_id', $pendaftaran_id)->get();
+
+    // Hapus jadwal yang ada
+    foreach ($jadwalPelatihan as $jadwal) {
+        $jadwal->delete();
     }
+
+    // Tambah atau perbarui jadwal baru
+    foreach ($request->tahap as $index => $value) {
+        if (isset($request->file_pendukung[$index])) {
+            $file = $request->file('file_pendukung')[$index]->store('jadwal_pelatihan', 'public');
+        } else {
+            $file = $request->existing_file_pendukung[$index] ?? null;
+        }
+
+        JadwalPelatihan::create([
+            'pendaftaran_id' => $pendaftaran_id,
+            'tahap' => $request->tahap[$index],
+            'tanggal_pelaksanaan' => $request->tanggal_pelaksanaan[$index],
+            'instruktur' => $request->instruktur[$index],
+            'ruangan' => $request->ruangan[$index],
+            'file_pendukung' => $file,
+        ]);
+    }
+
+    return redirect()->route('jadwal-pelatihan.show', $pendaftaran_id)->with('success', 'Jadwal pelatihan berhasil diperbarui');
+}
+
+
 
     /**
      * Remove the specified resource from storage.

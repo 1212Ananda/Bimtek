@@ -8,6 +8,7 @@ use App\Models\Pendaftaran;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -24,26 +25,40 @@ class AdminController extends Controller
     }
 
     public function approvePendaftaran(Request $request, $id)
-    {
+{
+    
+    $request->validate([
+        'surat_perjanjian' => 'required|string', 
+        'tanda_tangan_base64' => 'required|string',
+    ]);
 
-        $request->validate([
-            'spk' => 'required|file|mimes:pdf|max:2048',
-        ]);
+    $pendaftaran = Pendaftaran::findOrFail($id);
 
-        $pendaftaran = Pendaftaran::findOrFail($id);
+    $pendaftaran->spk = $request->surat_perjanjian;
 
-        if ($request->hasFile('spk')) {
-            $suratKeputusanPath = $request->file('spk')->store('spk', 'public');
-            $pendaftaran->spk = $suratKeputusanPath;
-        }
+    // Simpan tanda tangan digital admin
+    $ttdAdminPath = 'ttd_admin/' . $pendaftaran->id . '.png'; // Misalnya menyimpan ttd admin dalam format gambar
+    $ttdAdminBase64 = $request->tanda_tangan_base64;
+    $this->saveBase64Image($ttdAdminBase64, $ttdAdminPath); // Method untuk menyimpan base64 ke file
 
-        $pendaftaran->update([
-            'spk' => $suratKeputusanPath,
-            'status' => 'menunggu kode billing',
-        ]);
+    $pendaftaran->ttd_admin = $ttdAdminPath;
 
-        return redirect()->route('admin_pendaftaran')->with('success', 'Data berhasil dikirimkan ke user dan pendaftaran disetujui.');
-    }
+    // Update status pendaftaran
+    $pendaftaran->status = 'menunggu kode billing';
+
+    $pendaftaran->save();
+
+    return redirect()->route('admin_pendaftaran')->with('success', 'Pendaftaran berhasil disetujui.');
+}
+
+/**
+ * Method untuk menyimpan base64 ke file.
+ */
+private function saveBase64Image($base64Image, $path)
+{
+    $image = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image));
+    Storage::disk('public')->put($path, $image);
+}
 
     public function pembayaranKodeBilling()
 {
@@ -66,6 +81,7 @@ class AdminController extends Controller
     $data = $request->validate([
         'kode_billing' => 'required',
         'jumlah_pembayaran' => 'required',
+        'bank' => 'required', // tambahkan validasi untuk bank
     ]);
 
     $pendaftaran = Pendaftaran::find($id);
@@ -73,6 +89,7 @@ class AdminController extends Controller
     $pembayaran = new Pembayaran([
         'kode_billing' => $data['kode_billing'],
         'jumlah_pembayaran' => $data['jumlah_pembayaran'],
+        'bank' => $data['bank'], // tambahkan bank
         'status' => 'Belum dibayar',
         'user_id' => $pendaftaran->user_id,
     ]);
@@ -84,6 +101,7 @@ class AdminController extends Controller
 
     return redirect()->route('admin_pembayaran')->with('success', 'Kode Billing berhasil dikirimkan ke user');
 }
+
 
 
     public function pembayaran()

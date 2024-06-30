@@ -36,8 +36,7 @@
                                         <span class="badge badge-primary">{{ $pendaftaran->status }}</span>
                                     </td>
                                     <td>
-                                        {!! $pendaftaran->spk ? '<embed src="' . asset('storage/' . $pendaftaran->spk) . '" type="application/pdf" width="200" height="100"></embed>' : 'belum disetujui' !!}
-                                    </td>
+                                      {{$pendaftaran->spk}}
                                     <td>
                                         <a href="{{ route('showDetail', ['id' => $pendaftaran->id]) }}" class="btn btn-info">Detail</a>
                                     </td>

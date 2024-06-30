@@ -9,6 +9,7 @@ use App\Models\Pelatihan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PendaftaranController extends Controller
 {
@@ -84,35 +85,55 @@ class PendaftaranController extends Controller
         return view('pendaftaran.detail', compact('pendaftaran'));
     }
 
-    public function buktiPembayaran(Request $request, $id)
+    public function BuktiPembayaran(Request $request, $id)
     {
+        // Validasi request
+        $request->validate([
+            'bukti_pembayaran' => 'required|file|max:2048',
+            'signature' => 'required',
+        ]);
 
-        // $request->validate([
-        //     'bukti_pembayaran' => 'required|file|mimes:pdf', // Sesuaikan dengan kebutuhan
-        //     'ttd_surat_keputusan' => 'required|file', // Sesuaikan dengan kebutuhan
-        // ]);
-
+        // Ambil data pendaftaran berdasarkan $id
         $pendaftaran = Pendaftaran::findOrFail($id);
-        $pembayaran = Pembayaran::firstOrNew(['pendaftaran_id' => $pendaftaran->id]);
 
+        // Simpan bukti pembayaran jika ada
         if ($request->hasFile('bukti_pembayaran')) {
             $buktiPembayaranPath = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
 
-            $pembayaran->bukti_pembayaran = $buktiPembayaranPath;
-            $pembayaran->status = 'Menunggu Konfirmasi Pembayaran admin';
-            $pembayaran->tanggal_pembayaran = Carbon::now();
-            $pembayaran->save();
+            if ($pendaftaran->pembayaran) {
+                $pembayaran = $pendaftaran->pembayaran;
+                $pembayaran->bukti_pembayaran = $buktiPembayaranPath;
+                $pembayaran->status = 'Menunggu Konfirmasi Pembayaran admin';
+                $pembayaran->save();
+            } else {
+                // Jika belum ada, buat instance baru Pembayaran dan simpan file bukti pembayaran
+                $pembayaran = new Pembayaran();
+                $pembayaran->bukti_pembayaran = $buktiPembayaranPath;
+                $pembayaran->status = 'Menunggu Konfirmasi Pembayaran admin';
+                $pendaftaran->pembayaran()->save($pembayaran);
+
+            }
         }
-        if ($request->hasFile('spk')) {
-            $spkTTD = $request->file('spk')->store('spk', 'public');
 
-            $pendaftaran->spk = $spkTTD;
-            $pendaftaran->status = 'Menunggu Konfirmasi Surat Keputusan';
-            $pendaftaran->save();
+        
+        // Simpan tanda tangan jika ada
+        if ($request->filled('signature')) {
+            $signature = $request->input('signature');
+            $this->saveBase64Image($signature, 'public/ttd_peserta/' . $pendaftaran->id . '.png');
+            $pendaftaran->ttd_peserta = 'ttd_peserta/' . $pendaftaran->id . '.png';
         }
 
+        $pendaftaran->status = 'Menunggu Konfirmasi Surat Keputusan';
+        $pendaftaran->save();
 
-        return redirect()->back()->with('success', 'Pembayaran dan surat keputusan berhasil dikirim . silahkan menunggu persetujuan admin');
+        // Redirect atau response sesuai kebutuhan Anda
+        return redirect()->back()->with('success', 'Bukti pembayaran dan tanda tangan berhasil diunggah.');
+    }
+
+    private function saveBase64Image($base64Image, $path)
+    {
+        $image = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image));
+        Storage::disk('public')->put($path, $image);
     }
 
     public function jadwalPelatihan()

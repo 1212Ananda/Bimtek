@@ -38,7 +38,7 @@
             <div class="col-lg-3 card p-3">
                 <div class="Langkah 2">
                     <img src="../img/langkah2.jpg" alt="book images" style="width: 100px;">
-                    <h3>2. Upload Kode Billing Dan Bukti Pembayaran</h3>
+                    <h3>2. Upload Bukti Pembayaran</h3>
                 </div>
             </div>
             <div class="col-lg-3 card p-3">

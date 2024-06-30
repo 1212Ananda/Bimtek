@@ -19,7 +19,6 @@
                                 <th scope="col">Kode Billing</th>
                                 <th scope="col">Jumlah Pembayaran</th>
                                 <th scope="col">Bukti Pembayaran</th>
-                                <th scope="col">Tanggal Pembayaran</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -36,7 +35,6 @@
                                     <td><embed src="{{ asset('storage/' . $pembayaran->bukti_pembayaran) }}" width="100" height="100" alt=""></embed>
                                         <a href="{{ asset('storage/' . $pembayaran->bukti_pembayaran) }}" target="_blank">Lihat bukti pembayaran</a>
                                     </td>
-                                    <td>{{ $pembayaran->tanggal_pembayaran }}</td>
                                     <td>
                                         <form id="confirmationForm{{ $pembayaran->id }}" action="{{ route('konfirmasi-pembayaran', $pembayaran->id) }}" method="POST">
                                             @csrf

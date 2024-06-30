@@ -18,11 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role_id',
+        'name', 'email', 'password', 'jabatan', 'no_tlp','role_id', 'nama_perusahaan', 'alamat_perusahaan', 'no_perusahaan',
     ];
+
 
     public function jadwalPelatihan()
     {

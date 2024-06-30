@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/jadwal-pelatihan', [AdminController::class, 'jadwalPelatihan'])->name('admin_jadwal-pelatihan');
     Route::get('/admin/jadwal-pelatihan/tambah', [AdminController::class, 'tambahJadwalPelatihan'])->name('admin_jadwal-pelatihan.tambah');
     Route::resource('jadwal-pelatihan', JadwalPelatihanController::class);
+    Route::get('/jadwal-pelatihan/{pendaftaran_id}/editPelatihan', [JadwalPelatihanController::class, 'editPelatihan'])->name('jadwal-pelatihan.editPelatihan');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -65,7 +66,7 @@ Route::middleware(['auth', 'role:bendahara'])->group(function () {
 });
 
 Route::middleware(['auth', 'role:instruktur'])->group(function () {
-
+    
 });
 Route::middleware(['auth', 'role:perusahaan'])->group(function () {
 

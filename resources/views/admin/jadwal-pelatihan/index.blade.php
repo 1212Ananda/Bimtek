@@ -30,6 +30,7 @@
                             <td>{{ $jadwal->first()->instruktur }}</td>
                             <td>
                                 <a href="{{ route('jadwal-pelatihan.show', $jadwal->first()->pendaftaran_id) }}" type="button" class="btn btn-primary detail-btn" data-pelatihan="{{ $namaPelatihan }}">Detail</a>
+                                <a href="{{ route('jadwal-pelatihan.editPelatihan', $jadwal->first()->pendaftaran_id) }}" class="btn btn-warning edit-btn" data-pelatihan="{{ $namaPelatihan }}">Edit</a>
                             </td>
                         </tr>
                     @endforeach
